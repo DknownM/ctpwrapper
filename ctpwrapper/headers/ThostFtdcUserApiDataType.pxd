@@ -782,6 +782,7 @@ cdef extern from 'ThostFtdcUserApiDataType.h':
     ctypedef char TThostFtdcDateTimeType[17]
     ctypedef char TThostFtdcWeakPasswordSourceType
     ctypedef char TThostFtdcRandomStringType[17]
+    ctypedef char TThostFtdcOrderMemoType[13]
     ctypedef char TThostFtdcOptSelfCloseFlagType
     ctypedef char TThostFtdcBizTypeType
     ctypedef char TThostFtdcAppTypeType
@@ -832,3 +833,29 @@ cdef extern from 'ThostFtdcUserApiDataType.h':
     ctypedef char TThostFtdcWithDrawParamValueType[41]
     ctypedef char TThostFtdcInvstTradingRightType
     ctypedef int TThostFtdcThostFunctionCodeType
+    ctypedef double TThostFtdcSPMMDiscountRatioType
+    ctypedef char TThostFtdcSPMMModelDescType[129]
+    ctypedef char TThostFtdcSPMMModelIDType[33]
+    ctypedef char TThostFtdcSPMMProductIDType[41]
+    ctypedef char TThostFtdcInstMarginCalIDType
+    ctypedef char TThostFtdcProductIDType[41]
+    ctypedef double TThostFtdcHedgeRateType
+    ctypedef int TThostFtdcRCAMSPriorityType
+    ctypedef double TThostFtdcAdjustValueType
+    ctypedef char TThostFtdcRCAMSCombinationTypeType
+    ctypedef char TThostFtdcRuleIdType[51]
+    ctypedef char TThostFtdcPortfTypeType
+    ctypedef char TThostFtdcInstrumentClassType
+    ctypedef int TThostFtdcCommodityGroupIDType
+    ctypedef double TThostFtdcStdPositionType
+    ctypedef char TThostFtdcProdChangeFlagType
+    ctypedef char TThostFtdcPwdRcdSrcType
+    ctypedef char TThostFtdcAddrSrvModeType
+    ctypedef char TThostFtdcAddrVerType
+    ctypedef char TThostFtdcAddrRemarkType[161]
+    ctypedef char TThostFtdcAddrNameType[65]
+    ctypedef char TThostFtdcIpAddrType[129]
+    ctypedef char TThostFtdcTGSessionQryStatusType
+    ctypedef char TThostFtdcOffsetTypeType
+    ctypedef char TThostFtdcSiteType[51]
+    ctypedef char TThostFtdcNetOperatorType[9]
