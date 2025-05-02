@@ -43,7 +43,7 @@ cdef extern from 'ThostFtdcMdApi.h':
 
         #  初始化
         #  @remark 初始化运行环境,只有调用后,接口才开始工作
-        void Init() noexcept nogil
+        void Init() except + nogil
 
         #  等待接口线程结束运行
         #  @return 线程退出代码
