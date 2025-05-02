@@ -2791,3 +2791,317 @@ cdef extern int TraderSpi_OnRspQryInvestorProdSPBMDetail(self,
         bIsLast
     )
     return 0
+
+
+# 投资者商品组SPMM记录查询响应
+cdef extern int TraderSpi_OnRspQryInvestorCommoditySPMMMargin(self,
+                                                              CThostFtdcInvestorCommoditySPMMMarginField *pInvestorCommoditySPMMMargin,
+                                                              CThostFtdcRspInfoField *pRspInfo,
+                                                              int nRequestID,
+                                                              cbool bIsLast) except -1:
+    self.OnRspQryInvestorCommoditySPMMMargin(
+        None if pInvestorCommoditySPMMMargin is NULL else ApiStructure.InvestorCommoditySPMMMarginField.from_address(<size_t> pInvestorCommoditySPMMMargin),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 投资者商品群SPMM记录查询响应
+cdef extern int TraderSpi_OnRspQryInvestorCommodityGroupSPMMMargin(self,
+                                                                   CThostFtdcInvestorCommodityGroupSPMMMarginField *pInvestorCommodityGroupSPMMMargin,
+                                                                   CThostFtdcRspInfoField *pRspInfo,
+                                                                   int nRequestID,
+                                                                   cbool bIsLast) except -1:
+    self.OnRspQryInvestorCommodityGroupSPMMMargin(
+        None if pInvestorCommodityGroupSPMMMargin is NULL else ApiStructure.InvestorCommodityGroupSPMMMarginField.from_address(<size_t> pInvestorCommodityGroupSPMMMargin),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# SPMM合约参数查询响应
+cdef extern int TraderSpi_OnRspQrySPMMInstParam(self,
+                                                CThostFtdcSPMMInstParamField *pSPMMInstParam,
+                                                CThostFtdcRspInfoField *pRspInfo,
+                                                int nRequestID,
+                                                cbool bIsLast) except -1:
+    self.OnRspQrySPMMInstParam(
+        None if pSPMMInstParam is NULL else ApiStructure.SPMMInstParamField.from_address(<size_t> pSPMMInstParam),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# SPMM产品参数查询响应
+cdef extern int TraderSpi_OnRspQrySPMMProductParam(self,
+                                                   CThostFtdcSPMMProductParamField *pSPMMProductParam,
+                                                   CThostFtdcRspInfoField *pRspInfo,
+                                                   int nRequestID,
+                                                   cbool bIsLast) except -1:
+    self.OnRspQrySPMMProductParam(
+        None if pSPMMProductParam is NULL else ApiStructure.SPMMProductParamField.from_address(<size_t> pSPMMProductParam),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# SPBM附加跨品种抵扣参数查询响应
+cdef extern int TraderSpi_OnRspQrySPBMAddOnInterParameter(self,
+                                                          CThostFtdcSPBMAddOnInterParameterField *pSPBMAddOnInterParameter,
+                                                          CThostFtdcRspInfoField *pRspInfo,
+                                                          int nRequestID,
+                                                          cbool bIsLast) except -1:
+    self.OnRspQrySPBMAddOnInterParameter(
+        None if pSPBMAddOnInterParameter is NULL else ApiStructure.SPBMAddOnInterParameterField.from_address(<size_t> pSPBMAddOnInterParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS产品组合信息查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSCombProductInfo(self,
+                                                       CThostFtdcRCAMSCombProductInfoField *pRCAMSCombProductInfo,
+                                                       CThostFtdcRspInfoField *pRspInfo,
+                                                       int nRequestID,
+                                                       cbool bIsLast) except -1:
+    self.OnRspQryRCAMSCombProductInfo(
+        None if pRCAMSCombProductInfo is NULL else ApiStructure.RCAMSCombProductInfoField.from_address(<size_t> pRCAMSCombProductInfo),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS同合约风险对冲参数查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSInstrParameter(self,
+                                                      CThostFtdcRCAMSInstrParameterField *pRCAMSInstrParameter,
+                                                      CThostFtdcRspInfoField *pRspInfo,
+                                                      int nRequestID,
+                                                      cbool bIsLast) except -1:
+    self.OnRspQryRCAMSInstrParameter(
+        None if pRCAMSInstrParameter is NULL else ApiStructure.RCAMSInstrParameterField.from_address(<size_t> pRCAMSInstrParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS品种内风险对冲参数查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSIntraParameter(self,
+                                                      CThostFtdcRCAMSIntraParameterField *pRCAMSIntraParameter,
+                                                      CThostFtdcRspInfoField *pRspInfo,
+                                                      int nRequestID,
+                                                      cbool bIsLast) except -1:
+    self.OnRspQryRCAMSIntraParameter(
+        None if pRCAMSIntraParameter is NULL else ApiStructure.RCAMSIntraParameterField.from_address(<size_t> pRCAMSIntraParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS跨品种风险折抵参数查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSInterParameter(self,
+                                                      CThostFtdcRCAMSInterParameterField *pRCAMSInterParameter,
+                                                      CThostFtdcRspInfoField *pRspInfo,
+                                                      int nRequestID,
+                                                      cbool bIsLast) except -1:
+    self.OnRspQryRCAMSInterParameter(
+        None if pRCAMSInterParameter is NULL else ApiStructure.RCAMSInterParameterField.from_address(<size_t> pRCAMSInterParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS空头期权风险调整参数查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSShortOptAdjustParam(self,
+                                                           CThostFtdcRCAMSShortOptAdjustParamField *pRCAMSShortOptAdjustParam,
+                                                           CThostFtdcRspInfoField *pRspInfo,
+                                                           int nRequestID,
+                                                           cbool bIsLast) except -1:
+    self.OnRspQryRCAMSShortOptAdjustParam(
+        None if pRCAMSShortOptAdjustParam is NULL else ApiStructure.RCAMSShortOptAdjustParamField.from_address(<size_t> pRCAMSShortOptAdjustParam),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RCAMS策略组合持仓查询响应
+cdef extern int TraderSpi_OnRspQryRCAMSInvestorCombPosition(self,
+                                                            CThostFtdcRCAMSInvestorCombPositionField *pRCAMSInvestorCombPosition,
+                                                            CThostFtdcRspInfoField *pRspInfo,
+                                                            int nRequestID,
+                                                            cbool bIsLast) except -1:
+    self.OnRspQryRCAMSInvestorCombPosition(
+        None if pRCAMSInvestorCombPosition is NULL else ApiStructure.RCAMSInvestorCombPositionField.from_address(<size_t> pRCAMSInvestorCombPosition),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 投资者品种RCAMS保证金查询响应
+cdef extern int TraderSpi_OnRspQryInvestorProdRCAMSMargin(self,
+                                                          CThostFtdcInvestorProdRCAMSMarginField *pInvestorProdRCAMSMargin,
+                                                          CThostFtdcRspInfoField *pRspInfo,
+                                                          int nRequestID,
+                                                          cbool bIsLast) except -1:
+    self.OnRspQryInvestorProdRCAMSMargin(
+        None if pInvestorProdRCAMSMargin is NULL else ApiStructure.InvestorProdRCAMSMarginField.from_address(<size_t> pInvestorProdRCAMSMargin),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RULE合约保证金参数查询响应
+cdef extern int TraderSpi_OnRspQryRULEInstrParameter(self,
+                                                     CThostFtdcRULEInstrParameterField *pRULEInstrParameter,
+                                                     CThostFtdcRspInfoField *pRspInfo,
+                                                     int nRequestID,
+                                                     cbool bIsLast) except -1:
+    self.OnRspQryRULEInstrParameter(
+        None if pRULEInstrParameter is NULL else ApiStructure.RULEInstrParameterField.from_address(<size_t> pRULEInstrParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RULE品种内对锁仓折扣参数查询响应
+cdef extern int TraderSpi_OnRspQryRULEIntraParameter(self,
+                                                     CThostFtdcRULEIntraParameterField *pRULEInstrParameter,
+                                                     CThostFtdcRspInfoField *pRspInfo,
+                                                     int nRequestID,
+                                                     cbool bIsLast) except -1:
+    self.OnRspQryRULEIntraParameter(
+        None if pRULEInstrParameter is NULL else ApiStructure.RULEIntraParameterField.from_address(<size_t> pRULEInstrParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# RULE跨品种抵扣参数查询响应
+cdef extern int TraderSpi_OnRspQryRULEInterParameter(self,
+                                                     CThostFtdcRULEInterParameterField *pRULEInterParameter,
+                                                     CThostFtdcRspInfoField *pRspInfo,
+                                                     int nRequestID,
+                                                     cbool bIsLast) except -1:
+    self.OnRspQryRULEInterParameter(
+        None if pRULEInterParameter is NULL else ApiStructure.RULEInterParameterField.from_address(<size_t> pRULEInterParameter),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 投资者产品RULE保证金查询响应
+cdef extern int TraderSpi_OnRspQryInvestorProdRULEMargin(self,
+                                                         CThostFtdcInvestorProdRULEMarginField *pInvestorProdRULEMargin,
+                                                         CThostFtdcRspInfoField *pRspInfo,
+                                                         int nRequestID,
+                                                         cbool bIsLast) except -1:
+    self.OnRspQryInvestorProdRULEMargin(
+        None if pInvestorProdRULEMargin is NULL else ApiStructure.InvestorProdRULEMarginField.from_address(<size_t> pInvestorProdRULEMargin),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 投资者新型组合保证金开关查询响应
+cdef extern int TraderSpi_OnRspQryInvestorPortfSetting(self,
+                                                       CThostFtdcInvestorPortfSettingField *pInvestorPortfSetting,
+                                                       CThostFtdcRspInfoField *pRspInfo,
+                                                       int nRequestID,
+                                                       cbool bIsLast) except -1:
+    self.OnRspQryInvestorPortfSetting(
+        None if pInvestorPortfSetting is NULL else ApiStructure.InvestorPortfSettingField.from_address(<size_t> pInvestorPortfSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 投资者申报费阶梯收取记录查询响应
+cdef extern int TraderSpi_OnRspQryInvestorInfoCommRec(self,
+                                                      CThostFtdcInvestorInfoCommRecField *pInvestorInfoCommRec,
+                                                      CThostFtdcRspInfoField *pRspInfo,
+                                                      int nRequestID,
+                                                      cbool bIsLast) except -1:
+    self.OnRspQryInvestorInfoCommRec(
+        None if pInvestorInfoCommRec is NULL else ApiStructure.InvestorInfoCommRecField.from_address(<size_t> pInvestorInfoCommRec),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 组合腿信息查询响应
+cdef extern int TraderSpi_OnRspQryCombLeg(self,
+                                          CThostFtdcCombLegField *pCombLeg,
+                                          CThostFtdcRspInfoField *pRspInfo,
+                                          int nRequestID,
+                                          cbool bIsLast) except -1:
+    self.OnRspQryCombLeg(
+        None if pCombLeg is NULL else ApiStructure.CombLegField.from_address(<size_t> pCombLeg),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 对冲设置请求响应
+cdef extern int TraderSpi_OnRspOffsetSetting(self,
+                                             CThostFtdcInputOffsetSettingField *pInputOffsetSetting,
+                                             CThostFtdcRspInfoField *pRspInfo,
+                                             int nRequestID,
+                                             cbool bIsLast) except -1:
+    self.OnRspOffsetSetting(
+        None if pInputOffsetSetting is NULL else ApiStructure.InputOffsetSettingField.from_address(<size_t> pInputOffsetSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 对冲设置撤销请求响应
+cdef extern int TraderSpi_OnRspCancelOffsetSetting(self,
+                                                   CThostFtdcInputOffsetSettingField *pInputOffsetSetting,
+                                                   CThostFtdcRspInfoField *pRspInfo,
+                                                   int nRequestID,
+                                                   cbool bIsLast) except -1:
+    self.OnRspCancelOffsetSetting(
+        None if pInputOffsetSetting is NULL else ApiStructure.InputOffsetSettingField.from_address(<size_t> pInputOffsetSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+# 对冲设置通知
+cdef extern int TraderSpi_OnRtnOffsetSetting(self,
+                                             CThostFtdcOffsetSettingField *pOffsetSetting) except -1:
+    self.OnRtnOffsetSetting(
+        None if pOffsetSetting is NULL else ApiStructure.OffsetSettingField.from_address(<size_t> pOffsetSetting)
+    )
+    return 0
+# 对冲设置错误回报
+cdef extern int TraderSpi_OnErrRtnOffsetSetting(self,
+                                                CThostFtdcInputOffsetSettingField *pInputOffsetSetting,
+                                                CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnOffsetSetting(
+        None if pInputOffsetSetting is NULL else ApiStructure.InputOffsetSettingField.from_address(<size_t> pInputOffsetSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+    )
+    return 0
+# 对冲设置撤销错误回报
+cdef extern int TraderSpi_OnErrRtnCancelOffsetSetting(self,
+                                                      CThostFtdcCancelOffsetSettingField *pCancelOffsetSetting,
+                                                      CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnCancelOffsetSetting(
+        None if pCancelOffsetSetting is NULL else ApiStructure.CancelOffsetSettingField.from_address(<size_t> pCancelOffsetSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+    )
+    return 0
+# 投资者对冲设置查询响应
+cdef extern int TraderSpi_OnRspQryOffsetSetting(self,
+                                                CThostFtdcOffsetSettingField *pOffsetSetting,
+                                                CThostFtdcRspInfoField *pRspInfo,
+                                                int nRequestID,
+                                                cbool bIsLast) except -1:
+    self.OnRspQryOffsetSetting(
+        None if pOffsetSetting is NULL else ApiStructure.OffsetSettingField.from_address(<size_t> pOffsetSetting),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
