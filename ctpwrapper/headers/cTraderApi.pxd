@@ -22,9 +22,9 @@ from libc.string cimport const_char
 
 from .ThostFtdcUserApiStruct cimport *
 
-
 cdef extern from "ThostFtdcTraderApi.h":
     cdef cppclass CTraderApi "CThostFtdcTraderApi":
+
         @staticmethod
         const_char *GetApiVersion()
 
@@ -44,6 +44,12 @@ cdef extern from "ThostFtdcTraderApi.h":
         #@retrun 获取到的交易日
         #@remark 只有登录成功后,才能得到正确的交易日
         const_char *GetTradingDay() except + nogil
+
+        # 获取已连接的前置的信息
+        # @param pFrontInfo：输入输出参数，用于存储获取到的前置信息，不能为空
+        # @remark 连接成功后，可获取正确的前置地址信息
+        # @remark 登录成功后，可获取正确的前置流控信息
+        void GetFrontInfo(CThostFtdcFrontInfoField *pFrontInfo) except + nogil
 
         #注册前置机网络地址
         #@param pszFrontAddress：前置机网络地址。
@@ -376,6 +382,71 @@ cdef extern from "ThostFtdcTraderApi.h":
         # 投资者产品SPBM明细查询
         int ReqQryInvestorProdSPBMDetail(CThostFtdcQryInvestorProdSPBMDetailField *pQryInvestorProdSPBMDetail, int nRequestID) except + nogil
 
+        # 投资者商品组SPMM记录查询
+        int ReqQryInvestorCommoditySPMMMargin(CThostFtdcQryInvestorCommoditySPMMMarginField *pQryInvestorCommoditySPMMMargin, int nRequestID) except + nogil
+
+        # 投资者商品群SPMM记录查询
+        int ReqQryInvestorCommodityGroupSPMMMargin(CThostFtdcQryInvestorCommodityGroupSPMMMarginField *pQryInvestorCommodityGroupSPMMMargin, int nRequestID) except + nogil
+
+        # SPMM合约参数查询
+        int ReqQrySPMMInstParam(CThostFtdcQrySPMMInstParamField *pQrySPMMInstParam, int nRequestID) except + nogil
+
+        # SPMM产品参数查询
+        int ReqQrySPMMProductParam(CThostFtdcQrySPMMProductParamField *pQrySPMMProductParam, int nRequestID) except + nogil
+
+        # SPBM附加跨品种抵扣参数查询
+        int ReqQrySPBMAddOnInterParameter(CThostFtdcQrySPBMAddOnInterParameterField *pQrySPBMAddOnInterParameter, int nRequestID) except + nogil
+
+        # RCAMS产品组合信息查询
+        int ReqQryRCAMSCombProductInfo(CThostFtdcQryRCAMSCombProductInfoField *pQryRCAMSCombProductInfo, int nRequestID) except + nogil
+
+        # RCAMS同合约风险对冲参数查询
+        int ReqQryRCAMSInstrParameter(CThostFtdcQryRCAMSInstrParameterField *pQryRCAMSInstrParameter, int nRequestID) except + nogil
+
+        # RCAMS品种内风险对冲参数查询
+        int ReqQryRCAMSIntraParameter(CThostFtdcQryRCAMSIntraParameterField *pQryRCAMSIntraParameter, int nRequestID) except + nogil
+
+        # RCAMS跨品种风险折抵参数查询
+        int ReqQryRCAMSInterParameter(CThostFtdcQryRCAMSInterParameterField *pQryRCAMSInterParameter, int nRequestID) except + nogil
+
+        # RCAMS空头期权风险调整参数查询
+        int ReqQryRCAMSShortOptAdjustParam(CThostFtdcQryRCAMSShortOptAdjustParamField *pQryRCAMSShortOptAdjustParam, int nRequestID) except + nogil
+
+        # RCAMS策略组合持仓查询
+        int ReqQryRCAMSInvestorCombPosition(CThostFtdcQryRCAMSInvestorCombPositionField *pQryRCAMSInvestorCombPosition, int nRequestID) except + nogil
+
+        # 投资者品种RCAMS保证金查询
+        int ReqQryInvestorProdRCAMSMargin(CThostFtdcQryInvestorProdRCAMSMarginField *pQryInvestorProdRCAMSMargin, int nRequestID) except + nogil
+
+        # RULE合约保证金参数查询
+        int ReqQryRULEInstrParameter(CThostFtdcQryRULEInstrParameterField *pQryRULEInstrParameter, int nRequestID) except + nogil
+
+        # RULE品种内对锁仓折扣参数查询
+        int ReqQryRULEIntraParameter(CThostFtdcQryRULEIntraParameterField *pQryRULEIntraParameter, int nRequestID) except + nogil
+
+        # RULE跨品种抵扣参数查询
+        int ReqQryRULEInterParameter(CThostFtdcQryRULEInterParameterField *pQryRULEInterParameter, int nRequestID) except + nogil
+
+        # 投资者产品RULE保证金查询
+        int ReqQryInvestorProdRULEMargin(CThostFtdcQryInvestorProdRULEMarginField *pQryInvestorProdRULEMargin, int nRequestID) except + nogil
+
+        # 投资者新型组合保证金开关查询
+        int ReqQryInvestorPortfSetting(CThostFtdcQryInvestorPortfSettingField *pQryInvestorPortfSetting, int nRequestID) except + nogil
+
+        # 投资者申报费阶梯收取记录查询
+        int ReqQryInvestorInfoCommRec(CThostFtdcQryInvestorInfoCommRecField *pQryInvestorInfoCommRec, int nRequestID) except + nogil
+
+        # 组合腿信息查询
+        int ReqQryCombLeg(CThostFtdcQryCombLegField *pQryCombLeg, int nRequestID) except + nogil
+
+        # 对冲设置请求
+        int ReqOffsetSetting(CThostFtdcInputOffsetSettingField *pInputOffsetSetting, int nRequestID) except + nogil
+
+        # 对冲设置撤销请求
+        int ReqCancelOffsetSetting(CThostFtdcInputOffsetSettingField *pInputOffsetSetting, int nRequestID) except + nogil
+
+        # 投资者对冲设置查询
+        int ReqQryOffsetSetting(CThostFtdcQryOffsetSettingField *pQryOffsetSetting, int nRequestID) except + nogil
 
 
 cdef extern from "ThostFtdcTraderApi.h" namespace "CThostFtdcTraderApi":

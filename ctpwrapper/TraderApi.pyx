@@ -17,17 +17,17 @@ You should have received a copy of the GNU General Public License
 along with ctpwrapper.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-from cpython cimport PyObject
-from libc.string cimport const_char
-from libcpp cimport bool as cbool
-
-from ctpwrapper.headers.ThostFtdcUserApiStruct cimport *
-from ctpwrapper.headers.cTraderApi cimport CTraderSpi, CTraderApi, CreateFtdcTraderApi
-
 # from libcpp.memory cimport shared_ptr,make_shared
 import ctypes
 
+from cpython cimport PyObject
+
+from libc.string cimport const_char
+from libcpp cimport bool as cbool
+
 from ctpwrapper import ApiStructure
+from ctpwrapper.headers.ThostFtdcUserApiStruct cimport *
+from ctpwrapper.headers.cTraderApi cimport CTraderSpi, CTraderApi, CreateFtdcTraderApi
 
 cdef class TraderApiWrapper:
     cdef CTraderApi *_api
@@ -80,11 +80,18 @@ cdef class TraderApiWrapper:
     def GetTradingDay(self):
 
         cdef const_char *result
-
         if self._spi is not NULL:
             with nogil:
                 result = self._api.GetTradingDay()
             return result
+
+    # 获取前置机信息
+    def GetFrontInfo(self, pFrontInfo):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pFrontInfo)
+            with nogil:
+                self._api.GetFrontInfo(<CThostFtdcFrontInfoField *> address)
 
     def RegisterFront(self, char *pszFrontAddress):
 
@@ -1057,6 +1064,187 @@ cdef class TraderApiWrapper:
             address = ctypes.addressof(pQryInvestorProdSPBMDetail)
             with nogil:
                 result = self._api.ReqQryInvestorProdSPBMDetail(<CThostFtdcQryInvestorProdSPBMDetailField *> address, nRequestID)
+            return result
+
+    # 投资者商品组SPMM记录查询
+    def ReqQryInvestorCommoditySPMMMargin(self, pQryInvestorCommoditySPMMMargin, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorCommoditySPMMMargin)
+            with nogil:
+                result = self._api.ReqQryInvestorCommoditySPMMMargin(<CThostFtdcQryInvestorCommoditySPMMMarginField *> address, nRequestID)
+            return result
+
+    # 投资者商品群SPMM记录查询
+    def ReqQryInvestorCommodityGroupSPMMMargin(self, pQryInvestorCommodityGroupSPMMMargin, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorCommodityGroupSPMMMargin)
+            with nogil:
+                result = self._api.ReqQryInvestorCommodityGroupSPMMMargin(<CThostFtdcQryInvestorCommodityGroupSPMMMarginField *> address, nRequestID)
+            return result
+
+    # SPMM合约参数查询
+    def ReqQrySPMMInstParam(self, pQrySPMMInstParam, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQrySPMMInstParam)
+            with nogil:
+                result = self._api.ReqQrySPMMInstParam(<CThostFtdcQrySPMMInstParamField *> address, nRequestID)
+            return result
+    # SPMM产品参数查询
+    def ReqQrySPMMProductParam(self, pQrySPMMProductParam, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQrySPMMProductParam)
+            with nogil:
+                result = self._api.ReqQrySPMMProductParam(<CThostFtdcQrySPMMProductParamField *> address, nRequestID)
+            return result
+    # SPBM附加跨品种抵扣参数查询
+    def ReqQrySPBMAddOnInterParameter(self, pQrySPBMAddOnInterParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQrySPBMAddOnInterParameter)
+            with nogil:
+                result = self._api.ReqQrySPBMAddOnInterParameter(<CThostFtdcQrySPBMAddOnInterParameterField *> address, nRequestID)
+            return result
+    # RCAMS产品组合信息查询
+    def ReqQryRCAMSCombProductInfo(self, pQryRCAMSCombProductInfo, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSCombProductInfo)
+            with nogil:
+                result = self._api.ReqQryRCAMSCombProductInfo(<CThostFtdcQryRCAMSCombProductInfoField *> address, nRequestID)
+            return result
+    # RCAMS同合约风险对冲参数查询
+    def ReqQryRCAMSInstrParameter(self, pQryRCAMSInstrParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSInstrParameter)
+            with nogil:
+                result = self._api.ReqQryRCAMSInstrParameter(<CThostFtdcQryRCAMSInstrParameterField *> address, nRequestID)
+            return result
+    # RCAMS品种内风险对冲参数查询
+    def ReqQryRCAMSIntraParameter(self, pQryRCAMSIntraParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSIntraParameter)
+            with nogil:
+                result = self._api.ReqQryRCAMSIntraParameter(<CThostFtdcQryRCAMSIntraParameterField *> address, nRequestID)
+            return result
+    # RCAMS跨品种风险折抵参数查询
+    def ReqQryRCAMSInterParameter(self, pQryRCAMSInterParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSInterParameter)
+            with nogil:
+                result = self._api.ReqQryRCAMSInterParameter(<CThostFtdcQryRCAMSInterParameterField *> address, nRequestID)
+            return result
+    # RCAMS空头期权风险调整参数查询
+    def ReqQryRCAMSShortOptAdjustParam(self, pQryRCAMSShortOptAdjustParam, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSShortOptAdjustParam)
+            with nogil:
+                result = self._api.ReqQryRCAMSShortOptAdjustParam(<CThostFtdcQryRCAMSShortOptAdjustParamField *> address, nRequestID)
+            return result
+    # RCAMS策略组合持仓查询
+    def ReqQryRCAMSInvestorCombPosition(self, pQryRCAMSInvestorCombPosition, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRCAMSInvestorCombPosition)
+            with nogil:
+                result = self._api.ReqQryRCAMSInvestorCombPosition(<CThostFtdcQryRCAMSInvestorCombPositionField *> address, nRequestID)
+            return result
+    # 投资者品种RCAMS保证金查询
+    def ReqQryInvestorProdRCAMSMargin(self, pQryInvestorProdRCAMSMargin, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorProdRCAMSMargin)
+            with nogil:
+                result = self._api.ReqQryInvestorProdRCAMSMargin(<CThostFtdcQryInvestorProdRCAMSMarginField *> address, nRequestID)
+            return result
+    # RULE合约保证金参数查询
+    def ReqQryRULEInstrParameter(self, pQryRULEInstrParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRULEInstrParameter)
+            with nogil:
+                result = self._api.ReqQryRULEInstrParameter(<CThostFtdcQryRULEInstrParameterField *> address, nRequestID)
+            return result
+    # RULE品种内对锁仓折扣参数查询
+    def ReqQryRULEIntraParameter(self, pQryRULEIntraParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRULEIntraParameter)
+            with nogil:
+                result = self._api.ReqQryRULEIntraParameter(<CThostFtdcQryRULEIntraParameterField *> address, nRequestID)
+            return result
+    # RULE跨品种抵扣参数查询
+    def ReqQryRULEInterParameter(self, pQryRULEInterParameter, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryRULEInterParameter)
+            with nogil:
+                result = self._api.ReqQryRULEInterParameter(<CThostFtdcQryRULEInterParameterField *> address, nRequestID)
+            return result
+    # 投资者产品RULE保证金查询
+    def ReqQryInvestorProdRULEMargin(self, pQryInvestorProdRULEMargin, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorProdRULEMargin)
+            with nogil:
+                result = self._api.ReqQryInvestorProdRULEMargin(<CThostFtdcQryInvestorProdRULEMarginField *> address, nRequestID)
+            return result
+    # 投资者新型组合保证金开关查询
+    def ReqQryInvestorPortfSetting(self, pQryInvestorPortfSetting, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorPortfSetting)
+            with nogil:
+                result = self._api.ReqQryInvestorPortfSetting(<CThostFtdcQryInvestorPortfSettingField *> address, nRequestID)
+            return result
+    # 投资者申报费阶梯收取记录查询
+    def ReqQryInvestorInfoCommRec(self, pQryInvestorInfoCommRec, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryInvestorInfoCommRec)
+            with nogil:
+                result = self._api.ReqQryInvestorInfoCommRec(<CThostFtdcQryInvestorInfoCommRecField *> address, nRequestID)
+            return result
+    # 组合腿信息查询
+    def ReqQryCombLeg(self, pQryCombLeg, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryCombLeg)
+            with nogil:
+                result = self._api.ReqQryCombLeg(<CThostFtdcQryCombLegField *> address, nRequestID)
+            return result
+    # 对冲设置请求
+    def ReqOffsetSetting(self, pInputOffsetSetting, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pInputOffsetSetting)
+            with nogil:
+                result = self._api.ReqOffsetSetting(<CThostFtdcInputOffsetSettingField *> address, nRequestID)
+            return result
+
+    # 对冲设置撤销请求
+    def ReqCancelOffsetSetting(self, pInputOffsetSetting, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pInputOffsetSetting)
+            with nogil:
+                result = self._api.ReqCancelOffsetSetting(<CThostFtdcInputOffsetSettingField *> address, nRequestID)
+            return result
+
+    # 投资者对冲设置查询
+    def ReqQryOffsetSetting(self, pQryOffsetSetting, int nRequestID):
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryOffsetSetting)
+            with nogil:
+                result = self._api.ReqQryOffsetSetting(<CThostFtdcQryOffsetSettingField *> address, nRequestID)
             return result
 
 cdef extern int TraderSpi_OnFrontConnected(self) except -1:

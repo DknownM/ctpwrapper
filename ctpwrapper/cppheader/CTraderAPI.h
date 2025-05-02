@@ -312,6 +312,80 @@ static inline int TraderSpi_OnRspQryInvestorPortfMarginRatio(PyObject *, CThostF
 ///投资者产品SPBM明细查询响应
 static inline int TraderSpi_OnRspQryInvestorProdSPBMDetail(PyObject *, CThostFtdcInvestorProdSPBMDetailField *, CThostFtdcRspInfoField *, int, bool);
 
+///投资者商品组SPMM记录查询响应
+static inline int TraderSpi_OnRspQryInvestorCommoditySPMMMargin(PyObject *, CThostFtdcInvestorCommoditySPMMMarginField *, CThostFtdcRspInfoField *, int, bool);
+
+///投资者商品群SPMM记录查询响应
+static inline int TraderSpi_OnRspQryInvestorCommodityGroupSPMMMargin(PyObject *, CThostFtdcInvestorCommodityGroupSPMMMarginField *, CThostFtdcRspInfoField *, int, bool);
+
+///SPMM合约参数查询响应
+static inline int TraderSpi_OnRspQrySPMMInstParam(PyObject *, CThostFtdcSPMMInstParamField *, CThostFtdcRspInfoField *, int, bool);
+
+///SPMM产品参数查询响应
+static inline int TraderSpi_OnRspQrySPMMProductParam(PyObject *, CThostFtdcSPMMProductParamField *, CThostFtdcRspInfoField *, int, bool);
+
+///SPBM附加跨品种抵扣参数查询响应
+static inline int TraderSpi_OnRspQrySPBMAddOnInterParameter(PyObject *, CThostFtdcSPBMAddOnInterParameterField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS产品组合信息查询响应
+static inline int TraderSpi_OnRspQryRCAMSCombProductInfo(PyObject *, CThostFtdcRCAMSCombProductInfoField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS同合约风险对冲参数查询响应
+static inline int TraderSpi_OnRspQryRCAMSInstrParameter(PyObject *, CThostFtdcRCAMSInstrParameterField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS品种内风险对冲参数查询响应
+static inline int TraderSpi_OnRspQryRCAMSIntraParameter(PyObject *, CThostFtdcRCAMSIntraParameterField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS跨品种风险折抵参数查询响应
+static inline int TraderSpi_OnRspQryRCAMSInterParameter(PyObject *, CThostFtdcRCAMSInterParameterField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS空头期权风险调整参数查询响应
+static inline int TraderSpi_OnRspQryRCAMSShortOptAdjustParam(PyObject *, CThostFtdcRCAMSShortOptAdjustParamField *, CThostFtdcRspInfoField *, int, bool);
+
+///RCAMS策略组合持仓查询响应
+static inline int TraderSpi_OnRspQryRCAMSInvestorCombPosition(PyObject *, CThostFtdcRCAMSInvestorCombPositionField *, CThostFtdcRspInfoField *, int, bool);
+
+///投资者品种RCAMS保证金查询响应
+static inline int TraderSpi_OnRspQryInvestorProdRCAMSMargin(PyObject *, CThostFtdcInvestorProdRCAMSMarginField *, CThostFtdcRspInfoField *, int , bool);
+
+///RULE合约保证金参数查询响应
+static inline int TraderSpi_OnRspQryRULEInstrParameter(PyObject *, CThostFtdcRULEInstrParameterField *, CThostFtdcRspInfoField *, int , bool);
+
+///RULE品种内对锁仓折扣参数查询响应
+static inline int TraderSpi_OnRspQryRULEIntraParameter(PyObject *, CThostFtdcRULEIntraParameterField *, CThostFtdcRspInfoField *, int , bool);
+
+///RULE跨品种抵扣参数查询响应
+static inline int TraderSpi_OnRspQryRULEInterParameter(PyObject *, CThostFtdcRULEInterParameterField *, CThostFtdcRspInfoField *, int , bool);
+
+///投资者产品RULE保证金查询响应
+static inline int TraderSpi_OnRspQryInvestorProdRULEMargin(PyObject *, CThostFtdcInvestorProdRULEMarginField *, CThostFtdcRspInfoField *, int, bool);
+
+///投资者新型组合保证金开关查询响应
+static inline int TraderSpi_OnRspQryInvestorPortfSetting(PyObject *, CThostFtdcInvestorPortfSettingField *, CThostFtdcRspInfoField *, int, bool);
+
+///投资者申报费阶梯收取记录查询响应
+static inline int TraderSpi_OnRspQryInvestorInfoCommRec(PyObject *, CThostFtdcInvestorInfoCommRecField *, CThostFtdcRspInfoField *, int, bool);
+
+///组合腿信息查询响应
+static inline int TraderSpi_OnRspQryCombLeg(PyObject *, CThostFtdcCombLegField *, CThostFtdcRspInfoField *, int, bool);
+
+///对冲设置请求响应
+static inline int TraderSpi_OnRspOffsetSetting(PyObject *, CThostFtdcInputOffsetSettingField *, CThostFtdcRspInfoField *, int, bool);
+
+///对冲设置撤销请求响应
+static inline int TraderSpi_OnRspCancelOffsetSetting(PyObject *, CThostFtdcInputOffsetSettingField *, CThostFtdcRspInfoField *, int, bool);
+
+///对冲设置通知
+static inline int TraderSpi_OnRtnOffsetSetting(PyObject *, CThostFtdcOffsetSettingField *);
+
+///对冲设置错误回报
+static inline int TraderSpi_OnErrRtnOffsetSetting(PyObject *, CThostFtdcInputOffsetSettingField *, CThostFtdcRspInfoField *);
+
+///对冲设置撤销错误回报
+static inline int TraderSpi_OnErrRtnCancelOffsetSetting(PyObject *, CThostFtdcCancelOffsetSettingField *, CThostFtdcRspInfoField *);
+
+///投资者对冲设置查询响应
+static inline int TraderSpi_OnRspQryOffsetSetting(PyObject *, CThostFtdcOffsetSettingField *, CThostFtdcRspInfoField *, int, bool);
 
 #define Python_GIL(func) \
     do { \
@@ -1039,6 +1113,132 @@ public:
     ///投资者产品SPBM明细查询响应
     virtual void OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField *pInvestorProdSPBMDetail, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
         Python_GIL(TraderSpi_OnRspQryInvestorProdSPBMDetail(self, pInvestorProdSPBMDetail, pRspInfo, nRequestID, bIsLast));
+    };
+
+
+    ///投资者商品组SPMM记录查询响应
+    virtual void OnRspQryInvestorCommoditySPMMMargin(CThostFtdcInvestorCommoditySPMMMarginField *pInvestorCommoditySPMMMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorCommoditySPMMMargin(self, pInvestorCommoditySPMMMargin, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///投资者商品群SPMM记录查询响应
+    virtual void OnRspQryInvestorCommodityGroupSPMMMargin(CThostFtdcInvestorCommodityGroupSPMMMarginField *pInvestorCommodityGroupSPMMMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorCommodityGroupSPMMMargin(self, pInvestorCommodityGroupSPMMMargin, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///SPMM合约参数查询响应
+    virtual void OnRspQrySPMMInstParam(CThostFtdcSPMMInstParamField *pSPMMInstParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQrySPMMInstParam(self, pSPMMInstParam, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///SPMM产品参数查询响应
+    virtual void OnRspQrySPMMProductParam(CThostFtdcSPMMProductParamField *pSPMMProductParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQrySPMMProductParam(self, pSPMMProductParam, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///SPBM附加跨品种抵扣参数查询响应
+    virtual void OnRspQrySPBMAddOnInterParameter(CThostFtdcSPBMAddOnInterParameterField *pSPBMAddOnInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQrySPBMAddOnInterParameter(self, pSPBMAddOnInterParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS产品组合信息查询响应
+    virtual void OnRspQryRCAMSCombProductInfo(CThostFtdcRCAMSCombProductInfoField *pRCAMSCombProductInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSCombProductInfo(self, pRCAMSCombProductInfo, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS同合约风险对冲参数查询响应
+    virtual void OnRspQryRCAMSInstrParameter(CThostFtdcRCAMSInstrParameterField *pRCAMSInstrParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSInstrParameter(self, pRCAMSInstrParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS品种内风险对冲参数查询响应
+    virtual void OnRspQryRCAMSIntraParameter(CThostFtdcRCAMSIntraParameterField *pRCAMSIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSIntraParameter(self, pRCAMSIntraParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS跨品种风险折抵参数查询响应
+    virtual void OnRspQryRCAMSInterParameter(CThostFtdcRCAMSInterParameterField *pRCAMSInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSInterParameter(self, pRCAMSInterParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS空头期权风险调整参数查询响应
+    virtual void OnRspQryRCAMSShortOptAdjustParam(CThostFtdcRCAMSShortOptAdjustParamField *pRCAMSShortOptAdjustParam, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSShortOptAdjustParam(self, pRCAMSShortOptAdjustParam, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RCAMS策略组合持仓查询响应
+    virtual void OnRspQryRCAMSInvestorCombPosition(CThostFtdcRCAMSInvestorCombPositionField *pRCAMSInvestorCombPosition, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRCAMSInvestorCombPosition(self, pRCAMSInvestorCombPosition, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///投资者品种RCAMS保证金查询响应
+    virtual void OnRspQryInvestorProdRCAMSMargin(CThostFtdcInvestorProdRCAMSMarginField *pInvestorProdRCAMSMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorProdRCAMSMargin(self, pInvestorProdRCAMSMargin, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RULE合约保证金参数查询响应
+    virtual void OnRspQryRULEInstrParameter(CThostFtdcRULEInstrParameterField *pRULEInstrParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRULEInstrParameter(self, pRULEInstrParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RULE品种内对锁仓折扣参数查询响应
+    virtual void OnRspQryRULEIntraParameter(CThostFtdcRULEIntraParameterField *pRULEIntraParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRULEIntraParameter(self, pRULEIntraParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///RULE跨品种抵扣参数查询响应
+    virtual void OnRspQryRULEInterParameter(CThostFtdcRULEInterParameterField *pRULEInterParameter, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryRULEInterParameter(self, pRULEInterParameter, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///投资者产品RULE保证金查询响应
+    virtual void OnRspQryInvestorProdRULEMargin(CThostFtdcInvestorProdRULEMarginField *pInvestorProdRULEMargin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorProdRULEMargin(self, pInvestorProdRULEMargin, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///投资者新型组合保证金开关查询响应
+    virtual void OnRspQryInvestorPortfSetting(CThostFtdcInvestorPortfSettingField *pInvestorPortfSetting, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorPortfSetting(self, pInvestorPortfSetting, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///投资者申报费阶梯收取记录查询响应
+    virtual void OnRspQryInvestorInfoCommRec(CThostFtdcInvestorInfoCommRecField *pInvestorInfoCommRec, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryInvestorInfoCommRec(self, pInvestorInfoCommRec, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///组合腿信息查询响应
+    virtual void OnRspQryCombLeg(CThostFtdcCombLegField *pCombLeg, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryCombLeg(self, pCombLeg, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///对冲设置请求响应
+    virtual void OnRspOffsetSetting(CThostFtdcInputOffsetSettingField *pInputOffsetSetting, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspOffsetSetting(self, pInputOffsetSetting, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///对冲设置撤销请求响应
+    virtual void OnRspCancelOffsetSetting(CThostFtdcInputOffsetSettingField *pInputOffsetSetting, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspCancelOffsetSetting(self, pInputOffsetSetting, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///对冲设置通知
+    virtual void OnRtnOffsetSetting(CThostFtdcOffsetSettingField *pOffsetSetting) {
+        Python_GIL(TraderSpi_OnRtnOffsetSetting(self, pOffsetSetting));
+    };
+
+    ///对冲设置错误回报
+    virtual void OnErrRtnOffsetSetting(CThostFtdcInputOffsetSettingField *pInputOffsetSetting, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnOffsetSetting(self, pInputOffsetSetting, pRspInfo));
+    };
+
+    ///对冲设置撤销错误回报
+    virtual void OnErrRtnCancelOffsetSetting(CThostFtdcCancelOffsetSettingField *pCancelOffsetSetting, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnCancelOffsetSetting(self, pCancelOffsetSetting, pRspInfo));
+    };
+
+    ///投资者对冲设置查询响应
+    virtual void OnRspQryOffsetSetting(CThostFtdcOffsetSettingField *pOffsetSetting, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryOffsetSetting(self, pOffsetSetting, pRspInfo, nRequestID, bIsLast));
     };
 
 
