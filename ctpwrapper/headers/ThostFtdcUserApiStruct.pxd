@@ -54,6 +54,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcTimeType INETime
         TThostFtdcSysVersionType SysVersion
         TThostFtdcTimeType GFEXTime
+        TThostFtdcDRIdentityIDType LoginDRIdentityID
+        TThostFtdcDRIdentityIDType UserDRIdentityID
     cdef struct CThostFtdcUserLogoutField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcUserIDType UserID
@@ -247,6 +249,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInstallCountType InstallCount
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcOrderCancelAlgType OrderCancelAlg
+        TThostFtdcInstallCountType TradeInstallCount
+        TThostFtdcInstallCountType MDInstallCount
     cdef struct CThostFtdcInvestorField:
         TThostFtdcInvestorIDType InvestorID
         TThostFtdcBrokerIDType BrokerID
@@ -655,6 +659,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcOrderField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -722,6 +728,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcExchangeInstIDType ExchangeInstID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcExchangeOrderField:
         TThostFtdcOrderPriceTypeType OrderPriceType
         TThostFtdcDirectionType Direction
@@ -798,6 +806,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcOrderActionField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -830,6 +840,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcExchangeOrderActionField:
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcOrderSysIDType OrderSysID
@@ -960,6 +972,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcCurrencyIDType CurrencyID
         TThostFtdcBoolType IsFromSopt
         TThostFtdcPasswordType TradingPassword
+        TThostFtdcBoolType IsSecAgentTranfer
     cdef struct CThostFtdcSyncFundMortgageField:
         TThostFtdcDepositSeqNoType MortgageSeqNo
         TThostFtdcBrokerIDType BrokerID
@@ -1248,6 +1261,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcOldInstrumentIDType reserve1
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcProductClassType ProductClass
     cdef struct CThostFtdcQryBrokerUserField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcUserIDType UserID
@@ -1736,6 +1750,9 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
         TThostFtdcOrderSysIDType ReplaceSysID
+        TThostFtdcTimeConditionType TimeCondition
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcInputQuoteActionField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -1755,6 +1772,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcQuoteField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -1810,6 +1829,9 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcExchangeInstIDType ExchangeInstID
         TThostFtdcIPAddressType IPAddress
         TThostFtdcOrderSysIDType ReplaceSysID
+        TThostFtdcTimeConditionType TimeCondition
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcQuoteActionField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -1840,6 +1862,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcQryQuoteField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -1887,6 +1911,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcExchangeInstIDType ExchangeInstID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcTimeConditionType TimeCondition
     cdef struct CThostFtdcQryExchangeQuoteField:
         TThostFtdcParticipantIDType ParticipantID
         TThostFtdcClientIDType ClientID
@@ -2712,6 +2737,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInvestorIDType InvestorID
         TThostFtdcOldInstrumentIDType reserve1
         TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcDateType TradingDay
     cdef struct CThostFtdcQryContractBankField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcBankIDType BankID
@@ -2920,6 +2947,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcMacAddressType MacAddress
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcErrorConditionalOrderField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -3026,6 +3055,8 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcErrorMsgType ErrorMsg
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcIPAddressType IPAddress
+        TThostFtdcOrderMemoType OrderMemo
+        TThostFtdcSequenceNo12Type SessionReqSeq
     cdef struct CThostFtdcQryExchangeSequenceField:
         TThostFtdcExchangeIDType ExchangeID
     cdef struct CThostFtdcExchangeSequenceField:
@@ -4462,6 +4493,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInvestorIDType InvestorID
     cdef struct CThostFtdcQueryFreqField:
         TThostFtdcQueryFreqType QueryFreq
+        TThostFtdcQueryFreqType FTDPkgFreq
     cdef struct CThostFtdcAuthForbiddenIPField:
         TThostFtdcIPAddressType IPAddress
     cdef struct CThostFtdcQryAuthForbiddenIPField:
@@ -4508,7 +4540,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInstrumentIDType InstrumentID
         TThostFtdcCombHedgeFlagType CombHedgeFlag
         TThostFtdcDiscountRatioType Xparameter
-    cdef struct CThostFtdcReqUserLoginSCField:
+    cdef struct CThostFtdcReqUserLoginSMField:
         TThostFtdcDateType TradingDay
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcUserIDType UserID
@@ -4518,11 +4550,14 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcProtocolInfoType ProtocolInfo
         TThostFtdcMacAddressType MacAddress
         TThostFtdcPasswordType OneTimePassword
-        TThostFtdcIPAddressType ClientIPAddress
+        TThostFtdcOldIPAddressType reserve1
         TThostFtdcLoginRemarkType LoginRemark
         TThostFtdcIPPortType ClientIPPort
+        TThostFtdcIPAddressType ClientIPAddress
+        TThostFtdcBrokerNameType BrokerName
         TThostFtdcAuthCodeType AuthCode
         TThostFtdcAppIDType AppID
+        TThostFtdcPasswordType PIN
     cdef struct CThostFtdcQryRiskSettleInvstPositionField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
@@ -4899,6 +4934,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcRatioType LockRateX
         TThostFtdcRatioType AddOnRate
         TThostFtdcPriceType PreSettlementPrice
+        TThostFtdcRatioType AddOnLockRateX2
     cdef struct CThostFtdcSPBMOptionParameterField:
         TThostFtdcDateType TradingDay
         TThostFtdcExchangeIDType ExchangeID
@@ -4914,6 +4950,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcInstrumentIDType ProdFamilyCode
         TThostFtdcRatioType IntraRateY
+        TThostFtdcRatioType AddOnIntraRateY2
     cdef struct CThostFtdcSPBMInterParameterField:
         TThostFtdcDateType TradingDay
         TThostFtdcExchangeIDType ExchangeID
@@ -4954,6 +4991,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcInvestorIDType InvestorID
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcRatioType MarginRatio
+        TThostFtdcProductIDType ProductGroupID
     cdef struct CThostFtdcQrySPBMPortfDefinitionField:
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcPortfolioDefIDType PortfolioDefID
@@ -4966,6 +5004,7 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcInvestorIDType InvestorID
         TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductGroupID
     cdef struct CThostFtdcInvestorProdSPBMDetailField:
         TThostFtdcExchangeIDType ExchangeID
         TThostFtdcBrokerIDType BrokerID
@@ -5021,3 +5060,900 @@ cdef extern from 'ThostFtdcUserApiStruct.h':
     cdef struct CThostFtdcQryThostUserFunctionField:
         TThostFtdcBrokerIDType BrokerID
         TThostFtdcUserIDType UserID
+    cdef struct CThostFtdcSPBMAddOnInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSpreadIdType SpreadId
+        TThostFtdcRatioType AddOnInterRateZ2
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+    cdef struct CThostFtdcQrySPBMAddOnInterParameterField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+    cdef struct CThostFtdcQryInvestorCommoditySPMMMarginField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcSPMMProductIDType CommodityID
+    cdef struct CThostFtdcQryInvestorCommodityGroupSPMMMarginField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+    cdef struct CThostFtdcQrySPMMInstParamField:
+        TThostFtdcInstrumentIDType InstrumentID
+    cdef struct CThostFtdcQrySPMMProductParamField:
+        TThostFtdcSPMMProductIDType ProductID
+    cdef struct CThostFtdcInvestorCommoditySPMMMarginField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcSPMMProductIDType CommodityID
+        TThostFtdcMoneyType MarginBeforeDiscount
+        TThostFtdcMoneyType MarginNoDiscount
+        TThostFtdcMoneyType LongPosRisk
+        TThostFtdcMoneyType LongOpenFrozenRisk
+        TThostFtdcMoneyType LongCloseFrozenRisk
+        TThostFtdcMoneyType ShortPosRisk
+        TThostFtdcMoneyType ShortOpenFrozenRisk
+        TThostFtdcMoneyType ShortCloseFrozenRisk
+        TThostFtdcSPMMDiscountRatioType IntraCommodityRate
+        TThostFtdcSPMMDiscountRatioType OptionDiscountRate
+        TThostFtdcMoneyType PosDiscount
+        TThostFtdcMoneyType OpenFrozenDiscount
+        TThostFtdcMoneyType NetRisk
+        TThostFtdcMoneyType CloseFrozenMargin
+        TThostFtdcMoneyType FrozenCommission
+        TThostFtdcMoneyType Commission
+        TThostFtdcMoneyType FrozenCash
+        TThostFtdcMoneyType CashIn
+        TThostFtdcMoneyType StrikeFrozenMargin
+    cdef struct CThostFtdcInvestorCommodityGroupSPMMMarginField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+        TThostFtdcMoneyType MarginBeforeDiscount
+        TThostFtdcMoneyType MarginNoDiscount
+        TThostFtdcMoneyType LongRisk
+        TThostFtdcMoneyType ShortRisk
+        TThostFtdcMoneyType CloseFrozenMargin
+        TThostFtdcSPMMDiscountRatioType InterCommodityRate
+        TThostFtdcSPMMDiscountRatioType MiniMarginRatio
+        TThostFtdcRatioType AdjustRatio
+        TThostFtdcMoneyType IntraCommodityDiscount
+        TThostFtdcMoneyType InterCommodityDiscount
+        TThostFtdcMoneyType ExchMargin
+        TThostFtdcMoneyType InvestorMargin
+        TThostFtdcMoneyType FrozenCommission
+        TThostFtdcMoneyType Commission
+        TThostFtdcMoneyType FrozenCash
+        TThostFtdcMoneyType CashIn
+        TThostFtdcMoneyType StrikeFrozenMargin
+    cdef struct CThostFtdcSPMMInstParamField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstMarginCalIDType InstMarginCalID
+        TThostFtdcSPMMProductIDType CommodityID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+    cdef struct CThostFtdcSPMMProductParamField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSPMMProductIDType ProductID
+        TThostFtdcSPMMProductIDType CommodityID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+    cdef struct CThostFtdcQryTraderAssignField:
+        TThostFtdcTraderIDType TraderID
+    cdef struct CThostFtdcTraderAssignField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcTraderIDType TraderID
+        TThostFtdcParticipantIDType ParticipantID
+        TThostFtdcDRIdentityIDType DRIdentityID
+    cdef struct CThostFtdcInvestorInfoCntSettingField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcBoolType IsCalInfoComm
+        TThostFtdcBoolType IsLimitInfoMax
+        TThostFtdcVolumeType InfoMaxLimit
+    cdef struct CThostFtdcRCAMSCombProductInfoField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcProductIDType ProductGroupID
+    cdef struct CThostFtdcRCAMSInstrParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcHedgeRateType HedgeRate
+    cdef struct CThostFtdcRCAMSIntraParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcHedgeRateType HedgeRate
+    cdef struct CThostFtdcRCAMSInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductGroupID
+        TThostFtdcRCAMSPriorityType Priority
+        TThostFtdcHedgeRateType CreditRate
+        TThostFtdcProductIDType CombProduct1
+        TThostFtdcProductIDType CombProduct2
+    cdef struct CThostFtdcRCAMSShortOptAdjustParamField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcAdjustValueType AdjustValue
+    cdef struct CThostFtdcRCAMSInvestorCombPositionField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcPosiDirectionType PosiDirection
+        TThostFtdcInstrumentIDType CombInstrumentID
+        TThostFtdcLegIDType LegID
+        TThostFtdcExchangeInstIDType ExchangeInstID
+        TThostFtdcVolumeType TotalAmt
+        TThostFtdcMoneyType ExchMargin
+        TThostFtdcMoneyType Margin
+    cdef struct CThostFtdcInvestorProdRCAMSMarginField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcProductIDType ProductGroupID
+        TThostFtdcMoneyType RiskBeforeDiscount
+        TThostFtdcMoneyType IntraInstrRisk
+        TThostFtdcMoneyType BPosRisk
+        TThostFtdcMoneyType SPosRisk
+        TThostFtdcMoneyType IntraProdRisk
+        TThostFtdcMoneyType NetRisk
+        TThostFtdcMoneyType InterProdRisk
+        TThostFtdcMoneyType ShortOptRiskAdj
+        TThostFtdcMoneyType OptionRoyalty
+        TThostFtdcMoneyType MMSACloseFrozenMargin
+        TThostFtdcMoneyType CloseCombFrozenMargin
+        TThostFtdcMoneyType CloseFrozenMargin
+        TThostFtdcMoneyType MMSAOpenFrozenMargin
+        TThostFtdcMoneyType DeliveryOpenFrozenMargin
+        TThostFtdcMoneyType OpenFrozenMargin
+        TThostFtdcMoneyType UseFrozenMargin
+        TThostFtdcMoneyType MMSAExchMargin
+        TThostFtdcMoneyType DeliveryExchMargin
+        TThostFtdcMoneyType CombExchMargin
+        TThostFtdcMoneyType ExchMargin
+        TThostFtdcMoneyType UseMargin
+    cdef struct CThostFtdcQryRCAMSCombProductInfoField:
+        TThostFtdcProductIDType ProductID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcProductIDType ProductGroupID
+    cdef struct CThostFtdcQryRCAMSInstrParameterField:
+        TThostFtdcProductIDType ProductID
+    cdef struct CThostFtdcQryRCAMSIntraParameterField:
+        TThostFtdcProductIDType CombProductID
+    cdef struct CThostFtdcQryRCAMSInterParameterField:
+        TThostFtdcProductIDType ProductGroupID
+        TThostFtdcProductIDType CombProduct1
+        TThostFtdcProductIDType CombProduct2
+    cdef struct CThostFtdcQryRCAMSShortOptAdjustParamField:
+        TThostFtdcProductIDType CombProductID
+    cdef struct CThostFtdcQryRCAMSInvestorCombPositionField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType CombInstrumentID
+    cdef struct CThostFtdcQryInvestorProdRCAMSMarginField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcProductIDType ProductGroupID
+    cdef struct CThostFtdcRULEInstrParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentClassType InstrumentClass
+        TThostFtdcInstrumentIDType StdInstrumentID
+        TThostFtdcRatioType BSpecRatio
+        TThostFtdcRatioType SSpecRatio
+        TThostFtdcRatioType BHedgeRatio
+        TThostFtdcRatioType SHedgeRatio
+        TThostFtdcMoneyType BAddOnMargin
+        TThostFtdcMoneyType SAddOnMargin
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+    cdef struct CThostFtdcRULEIntraParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcInstrumentIDType StdInstrumentID
+        TThostFtdcMoneyType StdInstrMargin
+        TThostFtdcRatioType UsualIntraRate
+        TThostFtdcRatioType DeliveryIntraRate
+    cdef struct CThostFtdcRULEInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSpreadIdType SpreadId
+        TThostFtdcRatioType InterRate
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+        TThostFtdcCommonIntType Leg1PropFactor
+        TThostFtdcCommonIntType Leg2PropFactor
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+        TThostFtdcInstrumentNameType CommodityGroupName
+    cdef struct CThostFtdcQryRULEInstrParameterField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+    cdef struct CThostFtdcQryRULEIntraParameterField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+    cdef struct CThostFtdcQryRULEInterParameterField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+    cdef struct CThostFtdcInvestorProdRULEMarginField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcInstrumentClassType InstrumentClass
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+        TThostFtdcStdPositionType BStdPosition
+        TThostFtdcStdPositionType SStdPosition
+        TThostFtdcStdPositionType BStdOpenFrozen
+        TThostFtdcStdPositionType SStdOpenFrozen
+        TThostFtdcStdPositionType BStdCloseFrozen
+        TThostFtdcStdPositionType SStdCloseFrozen
+        TThostFtdcStdPositionType IntraProdStdPosition
+        TThostFtdcStdPositionType NetStdPosition
+        TThostFtdcStdPositionType InterProdStdPosition
+        TThostFtdcStdPositionType SingleStdPosition
+        TThostFtdcMoneyType IntraProdMargin
+        TThostFtdcMoneyType InterProdMargin
+        TThostFtdcMoneyType SingleMargin
+        TThostFtdcMoneyType NonCombMargin
+        TThostFtdcMoneyType AddOnMargin
+        TThostFtdcMoneyType ExchMargin
+        TThostFtdcMoneyType AddOnFrozenMargin
+        TThostFtdcMoneyType OpenFrozenMargin
+        TThostFtdcMoneyType CloseFrozenMargin
+        TThostFtdcMoneyType Margin
+        TThostFtdcMoneyType FrozenMargin
+    cdef struct CThostFtdcQryInvestorProdRULEMarginField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+    cdef struct CThostFtdcSyncDeltaSPBMPortfDefinitionField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcPortfolioDefIDType PortfolioDefID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcBoolType IsSPBM
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMInvstPortfDefField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcPortfolioDefIDType PortfolioDefID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMFutureParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcVolumeMultipleType Cvf
+        TThostFtdcTimeRangeType TimeRange
+        TThostFtdcRatioType MarginRate
+        TThostFtdcRatioType LockRateX
+        TThostFtdcRatioType AddOnRate
+        TThostFtdcPriceType PreSettlementPrice
+        TThostFtdcRatioType AddOnLockRateX2
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMOptionParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcVolumeMultipleType Cvf
+        TThostFtdcPriceType DownPrice
+        TThostFtdcDeltaType Delta
+        TThostFtdcDeltaType SlimiDelta
+        TThostFtdcPriceType PreSettlementPrice
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMIntraParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcRatioType IntraRateY
+        TThostFtdcRatioType AddOnIntraRateY2
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSpreadIdType SpreadId
+        TThostFtdcRatioType InterRateZ
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPBMAddOnInterParamField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSpreadIdType SpreadId
+        TThostFtdcRatioType AddOnInterRateZ2
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPMMInstParamField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstMarginCalIDType InstMarginCalID
+        TThostFtdcSPMMProductIDType CommodityID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPMMProductParamField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSPMMProductIDType ProductID
+        TThostFtdcSPMMProductIDType CommodityID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaInvestorSPMMModelField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcSPMMModelIDType SPMMModelID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaSPMMModelParamField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSPMMModelIDType SPMMModelID
+        TThostFtdcSPMMProductIDType CommodityGroupID
+        TThostFtdcSPMMDiscountRatioType IntraCommodityRate
+        TThostFtdcSPMMDiscountRatioType InterCommodityRate
+        TThostFtdcSPMMDiscountRatioType OptionDiscountRate
+        TThostFtdcSPMMDiscountRatioType MiniMarginRatio
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSCombProdInfoField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcProductIDType ProductGroupID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSInstrParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcHedgeRateType HedgeRate
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSIntraParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcHedgeRateType HedgeRate
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProductGroupID
+        TThostFtdcRCAMSPriorityType Priority
+        TThostFtdcHedgeRateType CreditRate
+        TThostFtdcProductIDType CombProduct1
+        TThostFtdcProductIDType CombProduct2
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSSOptAdjParamField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType CombProductID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcAdjustValueType AdjustValue
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSCombRuleDtlField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcProductIDType ProdGroup
+        TThostFtdcRuleIdType RuleId
+        TThostFtdcRCAMSPriorityType Priority
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcMoneyType CombMargin
+        TThostFtdcExchangeInstIDType ExchangeInstID
+        TThostFtdcLegIDType LegID
+        TThostFtdcInstrumentIDType LegInstrumentID
+        TThostFtdcDirectionType Direction
+        TThostFtdcLegMultipleType LegMultiple
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRCAMSInvstCombPosField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcPosiDirectionType PosiDirection
+        TThostFtdcInstrumentIDType CombInstrumentID
+        TThostFtdcLegIDType LegID
+        TThostFtdcExchangeInstIDType ExchangeInstID
+        TThostFtdcVolumeType TotalAmt
+        TThostFtdcMoneyType ExchMargin
+        TThostFtdcMoneyType Margin
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRULEInstrParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentClassType InstrumentClass
+        TThostFtdcInstrumentIDType StdInstrumentID
+        TThostFtdcRatioType BSpecRatio
+        TThostFtdcRatioType SSpecRatio
+        TThostFtdcRatioType BHedgeRatio
+        TThostFtdcRatioType SHedgeRatio
+        TThostFtdcMoneyType BAddOnMargin
+        TThostFtdcMoneyType SAddOnMargin
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRULEIntraParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcInstrumentIDType ProdFamilyCode
+        TThostFtdcInstrumentIDType StdInstrumentID
+        TThostFtdcMoneyType StdInstrMargin
+        TThostFtdcRatioType UsualIntraRate
+        TThostFtdcRatioType DeliveryIntraRate
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcSyncDeltaRULEInterParameterField:
+        TThostFtdcDateType TradingDay
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcSpreadIdType SpreadId
+        TThostFtdcRatioType InterRate
+        TThostFtdcInstrumentIDType Leg1ProdFamilyCode
+        TThostFtdcInstrumentIDType Leg2ProdFamilyCode
+        TThostFtdcCommonIntType Leg1PropFactor
+        TThostFtdcCommonIntType Leg2PropFactor
+        TThostFtdcCommodityGroupIDType CommodityGroupID
+        TThostFtdcInstrumentNameType CommodityGroupName
+        TThostFtdcActionDirectionType ActionDirection
+        TThostFtdcSequenceNoType SyncDeltaSequenceNo
+    cdef struct CThostFtdcIpAddrParamField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcIpAddrType Address
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcDRIdentityNameType DRIdentityName
+        TThostFtdcAddrSrvModeType AddrSrvMode
+        TThostFtdcAddrVerType AddrVer
+        TThostFtdcCommonIntType AddrNo
+        TThostFtdcAddrNameType AddrName
+        TThostFtdcBoolType IsSM
+        TThostFtdcBoolType IsLocalAddr
+        TThostFtdcAddrRemarkType Remark
+        TThostFtdcSiteType Site
+        TThostFtdcNetOperatorType NetOperator
+    cdef struct CThostFtdcQryIpAddrParamField:
+        TThostFtdcBrokerIDType BrokerID
+    cdef struct CThostFtdcTGIpAddrParamField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcUserIDType UserID
+        TThostFtdcIpAddrType Address
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcDRIdentityNameType DRIdentityName
+        TThostFtdcAddrSrvModeType AddrSrvMode
+        TThostFtdcAddrVerType AddrVer
+        TThostFtdcCommonIntType AddrNo
+        TThostFtdcAddrNameType AddrName
+        TThostFtdcBoolType IsSM
+        TThostFtdcBoolType IsLocalAddr
+        TThostFtdcAddrRemarkType Remark
+        TThostFtdcSiteType Site
+        TThostFtdcNetOperatorType NetOperator
+    cdef struct CThostFtdcQryTGIpAddrParamField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcUserIDType UserID
+        TThostFtdcAppIDType AppID
+    cdef struct CThostFtdcTGSessionQryStatusField:
+        TThostFtdcCommonIntType LastQryFreq
+        TThostFtdcTGSessionQryStatusType QryStatus
+    cdef struct CThostFtdcLocalAddrConfigField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcIpAddrType PeerAddr
+        TThostFtdcIpAddrType NetMask
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcIpAddrType LocalAddress
+    cdef struct CThostFtdcQryLocalAddrConfigField:
+        TThostFtdcBrokerIDType BrokerID
+    cdef struct CThostFtdcReqQueryBankAccountBySecField:
+        TThostFtdcTradeCodeType TradeCode
+        TThostFtdcBankIDType BankID
+        TThostFtdcBankBrchIDType BankBranchID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcFutureBranchIDType BrokerBranchID
+        TThostFtdcTradeDateType TradeDate
+        TThostFtdcTradeTimeType TradeTime
+        TThostFtdcBankSerialType BankSerial
+        TThostFtdcTradeDateType TradingDay
+        TThostFtdcSerialType PlateSerial
+        TThostFtdcLastFragmentType LastFragment
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcIndividualNameType CustomerName
+        TThostFtdcIdCardTypeType IdCardType
+        TThostFtdcIdentifiedCardNoType IdentifiedCardNo
+        TThostFtdcCustTypeType CustType
+        TThostFtdcBankAccountType BankAccount
+        TThostFtdcPasswordType BankPassWord
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType Password
+        TThostFtdcFutureSerialType FutureSerial
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcUserIDType UserID
+        TThostFtdcYesNoIndicatorType VerifyCertNoFlag
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcDigestType Digest
+        TThostFtdcBankAccTypeType BankAccType
+        TThostFtdcDeviceIDType DeviceID
+        TThostFtdcBankAccTypeType BankSecuAccType
+        TThostFtdcBankCodingForFutureType BrokerIDByBank
+        TThostFtdcBankAccountType BankSecuAcc
+        TThostFtdcPwdFlagType BankPwdFlag
+        TThostFtdcPwdFlagType SecuPwdFlag
+        TThostFtdcOperNoType OperNo
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcTIDType TID
+        TThostFtdcLongIndividualNameType LongCustomerName
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcFutureSerialType SecFutureSerial
+    cdef struct CThostFtdcRspQueryBankAccountBySecField:
+        TThostFtdcTradeCodeType TradeCode
+        TThostFtdcBankIDType BankID
+        TThostFtdcBankBrchIDType BankBranchID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcFutureBranchIDType BrokerBranchID
+        TThostFtdcTradeDateType TradeDate
+        TThostFtdcTradeTimeType TradeTime
+        TThostFtdcBankSerialType BankSerial
+        TThostFtdcTradeDateType TradingDay
+        TThostFtdcSerialType PlateSerial
+        TThostFtdcLastFragmentType LastFragment
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcIndividualNameType CustomerName
+        TThostFtdcIdCardTypeType IdCardType
+        TThostFtdcIdentifiedCardNoType IdentifiedCardNo
+        TThostFtdcCustTypeType CustType
+        TThostFtdcBankAccountType BankAccount
+        TThostFtdcPasswordType BankPassWord
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType Password
+        TThostFtdcFutureSerialType FutureSerial
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcUserIDType UserID
+        TThostFtdcYesNoIndicatorType VerifyCertNoFlag
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcDigestType Digest
+        TThostFtdcBankAccTypeType BankAccType
+        TThostFtdcDeviceIDType DeviceID
+        TThostFtdcBankAccTypeType BankSecuAccType
+        TThostFtdcBankCodingForFutureType BrokerIDByBank
+        TThostFtdcBankAccountType BankSecuAcc
+        TThostFtdcPwdFlagType BankPwdFlag
+        TThostFtdcPwdFlagType SecuPwdFlag
+        TThostFtdcOperNoType OperNo
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcTIDType TID
+        TThostFtdcTradeAmountType BankUseAmount
+        TThostFtdcTradeAmountType BankFetchAmount
+        TThostFtdcLongIndividualNameType LongCustomerName
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcFutureSerialType SecFutureSerial
+    cdef struct CThostFtdcReqTransferBySecField:
+        TThostFtdcTradeCodeType TradeCode
+        TThostFtdcBankIDType BankID
+        TThostFtdcBankBrchIDType BankBranchID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcFutureBranchIDType BrokerBranchID
+        TThostFtdcTradeDateType TradeDate
+        TThostFtdcTradeTimeType TradeTime
+        TThostFtdcBankSerialType BankSerial
+        TThostFtdcTradeDateType TradingDay
+        TThostFtdcSerialType PlateSerial
+        TThostFtdcLastFragmentType LastFragment
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcIndividualNameType CustomerName
+        TThostFtdcIdCardTypeType IdCardType
+        TThostFtdcIdentifiedCardNoType IdentifiedCardNo
+        TThostFtdcCustTypeType CustType
+        TThostFtdcBankAccountType BankAccount
+        TThostFtdcPasswordType BankPassWord
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType Password
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcFutureSerialType FutureSerial
+        TThostFtdcUserIDType UserID
+        TThostFtdcYesNoIndicatorType VerifyCertNoFlag
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcTradeAmountType TradeAmount
+        TThostFtdcTradeAmountType FutureFetchAmount
+        TThostFtdcFeePayFlagType FeePayFlag
+        TThostFtdcCustFeeType CustFee
+        TThostFtdcFutureFeeType BrokerFee
+        TThostFtdcAddInfoType Message
+        TThostFtdcDigestType Digest
+        TThostFtdcBankAccTypeType BankAccType
+        TThostFtdcDeviceIDType DeviceID
+        TThostFtdcBankAccTypeType BankSecuAccType
+        TThostFtdcBankCodingForFutureType BrokerIDByBank
+        TThostFtdcBankAccountType BankSecuAcc
+        TThostFtdcPwdFlagType BankPwdFlag
+        TThostFtdcPwdFlagType SecuPwdFlag
+        TThostFtdcOperNoType OperNo
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcTIDType TID
+        TThostFtdcTransferStatusType TransferStatus
+        TThostFtdcLongIndividualNameType LongCustomerName
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcFutureSerialType SecFutureSerial
+    cdef struct CThostFtdcRspTransferBySecField:
+        TThostFtdcTradeCodeType TradeCode
+        TThostFtdcBankIDType BankID
+        TThostFtdcBankBrchIDType BankBranchID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcFutureBranchIDType BrokerBranchID
+        TThostFtdcTradeDateType TradeDate
+        TThostFtdcTradeTimeType TradeTime
+        TThostFtdcBankSerialType BankSerial
+        TThostFtdcTradeDateType TradingDay
+        TThostFtdcSerialType PlateSerial
+        TThostFtdcLastFragmentType LastFragment
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcIndividualNameType CustomerName
+        TThostFtdcIdCardTypeType IdCardType
+        TThostFtdcIdentifiedCardNoType IdentifiedCardNo
+        TThostFtdcCustTypeType CustType
+        TThostFtdcBankAccountType BankAccount
+        TThostFtdcPasswordType BankPassWord
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType Password
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcFutureSerialType FutureSerial
+        TThostFtdcUserIDType UserID
+        TThostFtdcYesNoIndicatorType VerifyCertNoFlag
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcTradeAmountType TradeAmount
+        TThostFtdcTradeAmountType FutureFetchAmount
+        TThostFtdcFeePayFlagType FeePayFlag
+        TThostFtdcCustFeeType CustFee
+        TThostFtdcFutureFeeType BrokerFee
+        TThostFtdcAddInfoType Message
+        TThostFtdcDigestType Digest
+        TThostFtdcBankAccTypeType BankAccType
+        TThostFtdcDeviceIDType DeviceID
+        TThostFtdcBankAccTypeType BankSecuAccType
+        TThostFtdcBankCodingForFutureType BrokerIDByBank
+        TThostFtdcBankAccountType BankSecuAcc
+        TThostFtdcPwdFlagType BankPwdFlag
+        TThostFtdcPwdFlagType SecuPwdFlag
+        TThostFtdcOperNoType OperNo
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcTIDType TID
+        TThostFtdcTransferStatusType TransferStatus
+        TThostFtdcErrorIDType ErrorID
+        TThostFtdcErrorMsgType ErrorMsg
+        TThostFtdcLongIndividualNameType LongCustomerName
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcFutureSerialType SecFutureSerial
+    cdef struct CThostFtdcNotifyQueryFutureAccountBySecField:
+        TThostFtdcTradeCodeType TradeCode
+        TThostFtdcBankIDType BankID
+        TThostFtdcBankBrchIDType BankBranchID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcFutureBranchIDType BrokerBranchID
+        TThostFtdcTradeDateType TradeDate
+        TThostFtdcTradeTimeType TradeTime
+        TThostFtdcBankSerialType BankSerial
+        TThostFtdcTradeDateType TradingDay
+        TThostFtdcSerialType PlateSerial
+        TThostFtdcLastFragmentType LastFragment
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcIndividualNameType CustomerName
+        TThostFtdcIdCardTypeType IdCardType
+        TThostFtdcIdentifiedCardNoType IdentifiedCardNo
+        TThostFtdcCustTypeType CustType
+        TThostFtdcBankAccountType BankAccount
+        TThostFtdcPasswordType BankPassWord
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType Password
+        TThostFtdcFutureSerialType FutureSerial
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcUserIDType UserID
+        TThostFtdcYesNoIndicatorType VerifyCertNoFlag
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcDigestType Digest
+        TThostFtdcBankAccTypeType BankAccType
+        TThostFtdcDeviceIDType DeviceID
+        TThostFtdcBankAccTypeType BankSecuAccType
+        TThostFtdcBankCodingForFutureType BrokerIDByBank
+        TThostFtdcBankAccountType BankSecuAcc
+        TThostFtdcPwdFlagType BankPwdFlag
+        TThostFtdcPwdFlagType SecuPwdFlag
+        TThostFtdcOperNoType OperNo
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcTIDType TID
+        TThostFtdcTradeAmountType BankUseAmount
+        TThostFtdcTradeAmountType BankFetchAmount
+        TThostFtdcErrorIDType ErrorID
+        TThostFtdcErrorMsgType ErrorMsg
+        TThostFtdcLongIndividualNameType LongCustomerName
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcFutureSerialType SecFutureSerial
+    cdef struct CThostFtdcExitEmergencyField:
+        TThostFtdcBrokerIDType BrokerID
+    cdef struct CThostFtdcInvestorPortfMarginModelField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInvestorIDType MarginModelID
+    cdef struct CThostFtdcInvestorPortfSettingField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcHedgeFlagType HedgeFlag
+        TThostFtdcBoolType UsePortf
+    cdef struct CThostFtdcQryInvestorPortfSettingField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+    cdef struct CThostFtdcUserPasswordUpdateFromSecField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcUserIDType UserID
+        TThostFtdcPasswordType OldPassword
+        TThostFtdcPasswordType NewPassword
+        TThostFtdcDRIdentityIDType FromSec
+    cdef struct CThostFtdcSettlementInfoConfirmFromSecField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcDateType ConfirmDate
+        TThostFtdcTimeType ConfirmTime
+        TThostFtdcDRIdentityIDType FromSec
+    cdef struct CThostFtdcTradingAccountPasswordUpdateFromSecField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcAccountIDType AccountID
+        TThostFtdcPasswordType OldPassword
+        TThostFtdcPasswordType NewPassword
+        TThostFtdcCurrencyIDType CurrencyID
+        TThostFtdcDRIdentityIDType FromSec
+    cdef struct CThostFtdcRiskForbiddenRightField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcUserIDType UserID
+    cdef struct CThostFtdcInvestorInfoCommRecField:
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcVolumeType OrderCount
+        TThostFtdcVolumeType OrderActionCount
+        TThostFtdcVolumeType ForQuoteCnt
+        TThostFtdcMoneyType InfoComm
+        TThostFtdcBoolType IsOptSeries
+        TThostFtdcProductIDType ProductID
+        TThostFtdcVolumeType InfoCnt
+    cdef struct CThostFtdcQryInvestorInfoCommRecField:
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcBrokerIDType BrokerID
+    cdef struct CThostFtdcCombLegField:
+        TThostFtdcInstrumentIDType CombInstrumentID
+        TThostFtdcLegIDType LegID
+        TThostFtdcInstrumentIDType LegInstrumentID
+        TThostFtdcDirectionType Direction
+        TThostFtdcLegMultipleType LegMultiple
+        TThostFtdcImplyLevelType ImplyLevel
+    cdef struct CThostFtdcQryCombLegField:
+        TThostFtdcInstrumentIDType LegInstrumentID
+    cdef struct CThostFtdcInputOffsetSettingField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType UnderlyingInstrID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcOffsetTypeType OffsetType
+        TThostFtdcVolumeType Volume
+        TThostFtdcBoolType IsOffset
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcUserIDType UserID
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcIPAddressType IPAddress
+        TThostFtdcMacAddressType MacAddress
+    cdef struct CThostFtdcOffsetSettingField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType UnderlyingInstrID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcOffsetTypeType OffsetType
+        TThostFtdcVolumeType Volume
+        TThostFtdcBoolType IsOffset
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcUserIDType UserID
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcIPAddressType IPAddress
+        TThostFtdcMacAddressType MacAddress
+        TThostFtdcExchangeInstIDType ExchangeInstID
+        TThostFtdcExchangeInstIDType ExchangeSerialNo
+        TThostFtdcProductIDType ExchangeProductID
+        TThostFtdcParticipantIDType ParticipantID
+        TThostFtdcClientIDType ClientID
+        TThostFtdcTraderIDType TraderID
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcOrderSubmitStatusType OrderSubmitStatus
+        TThostFtdcDateType TradingDay
+        TThostFtdcSettlementIDType SettlementID
+        TThostFtdcDateType InsertDate
+        TThostFtdcTimeType InsertTime
+        TThostFtdcTimeType CancelTime
+        TThostFtdcExecResultType ExecResult
+        TThostFtdcSequenceNoType SequenceNo
+        TThostFtdcFrontIDType FrontID
+        TThostFtdcSessionIDType SessionID
+        TThostFtdcErrorMsgType StatusMsg
+        TThostFtdcUserIDType ActiveUserID
+        TThostFtdcSequenceNoType BrokerOffsetSettingSeq
+    cdef struct CThostFtdcCancelOffsetSettingField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcInstrumentIDType InstrumentID
+        TThostFtdcInstrumentIDType UnderlyingInstrID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcOffsetTypeType OffsetType
+        TThostFtdcVolumeType Volume
+        TThostFtdcBoolType IsOffset
+        TThostFtdcRequestIDType RequestID
+        TThostFtdcUserIDType UserID
+        TThostFtdcExchangeIDType ExchangeID
+        TThostFtdcIPAddressType IPAddress
+        TThostFtdcMacAddressType MacAddress
+        TThostFtdcExchangeInstIDType ExchangeInstID
+        TThostFtdcExchangeInstIDType ExchangeSerialNo
+        TThostFtdcProductIDType ExchangeProductID
+        TThostFtdcTraderIDType TraderID
+        TThostFtdcInstallIDType InstallID
+        TThostFtdcParticipantIDType ParticipantID
+        TThostFtdcClientIDType ClientID
+        TThostFtdcOrderActionStatusType OrderActionStatus
+        TThostFtdcErrorMsgType StatusMsg
+        TThostFtdcOrderLocalIDType ActionLocalID
+        TThostFtdcDateType ActionDate
+        TThostFtdcTimeType ActionTime
+    cdef struct CThostFtdcQryOffsetSettingField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcInvestorIDType InvestorID
+        TThostFtdcProductIDType ProductID
+        TThostFtdcOffsetTypeType OffsetType
+    cdef struct CThostFtdcAddrAppIDRelationField:
+        TThostFtdcBrokerIDType BrokerID
+        TThostFtdcIpAddrType Address
+        TThostFtdcDRIdentityIDType DRIdentityID
+        TThostFtdcAppIDType AppID
+    cdef struct CThostFtdcQryAddrAppIDRelationField:
+        TThostFtdcBrokerIDType BrokerID
+    cdef struct CThostFtdcFrontInfoField:
+        TThostFtdcAddressType FrontAddr
+        TThostFtdcQueryFreqType QryFreq
+        TThostFtdcQueryFreqType FTDPkgFreq

@@ -96,6 +96,15 @@ class TraderApiPy(TraderApiWrapper):
         day = super(TraderApiPy, self).GetTradingDay()
         return day.decode()
 
+    def GetFrontInfo(self, pFrontInfo):
+        """
+        获取已连接的前置的信息
+        @param pFrontInfo：输入输出参数，用于存储获取到的前置信息，不能为空
+        @remark 连接成功后，可获取正确的前置地址信息
+        @remark 登录成功后，可获取正确的前置流控信息
+        """
+        super(TraderApiPy, self).GetFrontInfo(pFrontInfo)
+
     def RegisterFront(self, pszFrontAddress: str) -> None:
         """
         注册前置机网络地址
@@ -714,6 +723,94 @@ class TraderApiPy(TraderApiWrapper):
     def ReqQryInvestorProdSPBMDetail(self, pQryInvestorProdSPBMDetail: "QryInvestorProdSPBMDetailField", nRequestID: int) -> int:
         return super(TraderApiPy, self).ReqQryInvestorProdSPBMDetail(pQryInvestorProdSPBMDetail, nRequestID)
 
+    # 投资者商品组SPMM记录查询
+    def ReqQryInvestorCommoditySPMMMargin(self, pQryInvestorCommoditySPMMMargin: "QryInvestorCommoditySPMMMarginField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorCommoditySPMMMargin(pQryInvestorCommoditySPMMMargin, nRequestID)
+
+    # 投资者商品群SPMM记录查询
+    def ReqQryInvestorCommodityGroupSPMMMargin(self, pQryInvestorCommodityGroupSPMMMargin: "QryInvestorCommodityGroupSPMMMarginField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorCommodityGroupSPMMMargin(pQryInvestorCommodityGroupSPMMMargin, nRequestID)
+
+    # SPMM合约参数查询
+    def ReqQrySPMMInstParam(self, pQrySPMMInstParam: "QrySPMMInstParamField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQrySPMMInstParam(pQrySPMMInstParam, nRequestID)
+
+    # SPMM产品参数查询
+    def ReqQrySPMMProductParam(self, pQrySPMMProductParam: "QrySPMMProductParamField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQrySPMMProductParam(pQrySPMMProductParam, nRequestID)
+
+    # SPBM附加跨品种抵扣参数查询
+    def ReqQrySPBMAddOnInterParameter(self, pQrySPBMAddOnInterParameter: "QrySPBMAddOnInterParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQrySPBMAddOnInterParameter(pQrySPBMAddOnInterParameter, nRequestID)
+
+    # RCAMS产品组合信息查询
+    def ReqQryRCAMSCombProductInfo(self, pQryRCAMSCombProductInfo: "QryRCAMSCombProductInfoField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSCombProductInfo(pQryRCAMSCombProductInfo, nRequestID)
+
+    # RCAMS同合约风险对冲参数查询
+    def ReqQryRCAMSInstrParameter(self, pQryRCAMSInstrParameter: "QryRCAMSInstrParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSInstrParameter(pQryRCAMSInstrParameter, nRequestID)
+
+    # RCAMS品种内风险对冲参数查询
+    def ReqQryRCAMSIntraParameter(self, pQryRCAMSIntraParameter: "QryRCAMSIntraParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSIntraParameter(pQryRCAMSIntraParameter, nRequestID)
+
+    # RCAMS跨品种风险折抵参数查询
+    def ReqQryRCAMSInterParameter(self, pQryRCAMSInterParameter: "QryRCAMSInterParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSInterParameter(pQryRCAMSInterParameter, nRequestID)
+
+    # RCAMS空头期权风险调整参数查询
+    def ReqQryRCAMSShortOptAdjustParam(self, pQryRCAMSShortOptAdjustParam: "QryRCAMSShortOptAdjustParamField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSShortOptAdjustParam(pQryRCAMSShortOptAdjustParam, nRequestID)
+
+    # RCAMS策略组合持仓查询
+    def ReqQryRCAMSInvestorCombPosition(self, pQryRCAMSInvestorCombPosition: "QryRCAMSInvestorCombPositionField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRCAMSInvestorCombPosition(pQryRCAMSInvestorCombPosition, nRequestID)
+
+    # 投资者品种RCAMS保证金查询
+    def ReqQryInvestorProdRCAMSMargin(self, pQryInvestorProdRCAMSMargin: "QryInvestorProdRCAMSMarginField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorProdRCAMSMargin(pQryInvestorProdRCAMSMargin, nRequestID)
+
+    # RULE合约保证金参数查询
+    def ReqQryRULEInstrParameter(self, pQryRULEInstrParameter: "QryRULEInstrParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRULEInstrParameter(pQryRULEInstrParameter, nRequestID)
+
+    # RULE品种内对锁仓折扣参数查询
+    def ReqQryRULEIntraParameter(self, pQryRULEIntraParameter: "QryRULEIntraParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRULEIntraParameter(pQryRULEIntraParameter, nRequestID)
+
+    # RULE跨品种抵扣参数查询
+    def ReqQryRULEInterParameter(self, pQryRULEInterParameter: "QryRULEInterParameterField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryRULEInterParameter(pQryRULEInterParameter, nRequestID)
+
+    # 投资者产品RULE保证金查询
+    def ReqQryInvestorProdRULEMargin(self, pQryInvestorProdRULEMargin: "QryInvestorProdRULEMarginField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorProdRULEMargin(pQryInvestorProdRULEMargin, nRequestID)
+
+    # 投资者新型组合保证金开关查询
+    def ReqQryInvestorPortfSetting(self, pQryInvestorPortfSetting: "QryInvestorPortfSettingField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorPortfSetting(pQryInvestorPortfSetting, nRequestID)
+
+    # 投资者申报费阶梯收取记录查询
+    def ReqQryInvestorInfoCommRec(self, pQryInvestorInfoCommRec: "QryInvestorInfoCommRecField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryInvestorInfoCommRec(pQryInvestorInfoCommRec, nRequestID)
+
+    # 组合腿信息查询
+    def ReqQryCombLeg(self, pQryCombLeg: "QryCombLegField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryCombLeg(pQryCombLeg, nRequestID)
+
+    # 对冲设置请求
+    def ReqOffsetSetting(self, pInputOffsetSetting: "InputOffsetSettingField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqOffsetSetting(pInputOffsetSetting, nRequestID)
+
+    # 对冲设置撤销请求
+    def ReqCancelOffsetSetting(self, pInputOffsetSetting: "InputOffsetSettingField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqCancelOffsetSetting(pInputOffsetSetting, nRequestID)
+
+    # 投资者对冲设置查询
+    def ReqQryOffsetSetting(self, pQryOffsetSetting: "QryOffsetSettingField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryOffsetSetting(pQryOffsetSetting, nRequestID)
+
     def OnFrontConnected(self) -> None:
         pass
 
@@ -1266,4 +1363,104 @@ class TraderApiPy(TraderApiWrapper):
 
     # 投资者产品SPBM明细查询响应
     def OnRspQryInvestorProdSPBMDetail(self, pInvestorProdSPBMDetail, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者商品组SPMM记录查询响应
+    def OnRspQryInvestorCommoditySPMMMargin(self, pInvestorCommoditySPMMMargin, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者商品群SPMM记录查询响应
+    def OnRspQryInvestorCommodityGroupSPMMMargin(self, pInvestorCommodityGroupSPMMMargin, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # SPMM合约参数查询响应
+    def OnRspQrySPMMInstParam(self, pSPMMInstParam, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # SPMM产品参数查询响应
+    def OnRspQrySPMMProductParam(self, pSPMMProductParam, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # SPBM附加跨品种抵扣参数查询响应
+    def OnRspQrySPBMAddOnInterParameter(self, pSPBMAddOnInterParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS产品组合信息查询响应
+    def OnRspQryRCAMSCombProductInfo(self, pRCAMSCombProductInfo, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS同合约风险对冲参数查询响应
+    def OnRspQryRCAMSInstrParameter(self, pRCAMSInstrParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS品种内风险对冲参数查询响应
+    def OnRspQryRCAMSIntraParameter(self, pRCAMSIntraParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS跨品种风险折抵参数查询响应
+    def OnRspQryRCAMSInterParameter(self, pRCAMSInterParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS空头期权风险调整参数查询响应
+    def OnRspQryRCAMSShortOptAdjustParam(self, pRCAMSShortOptAdjustParam, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RCAMS策略组合持仓查询响应
+    def OnRspQryRCAMSInvestorCombPosition(self, pRCAMSInvestorCombPosition, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者品种RCAMS保证金查询响应
+    def OnRspQryInvestorProdRCAMSMargin(self, pInvestorProdRCAMSMargin, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RULE合约保证金参数查询响应
+    def OnRspQryRULEInstrParameter(self, pRULEInstrParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RULE品种内对锁仓折扣参数查询响应
+    def OnRspQryRULEIntraParameter(self, pRULEIntraParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # RULE跨品种抵扣参数查询响应
+    def OnRspQryRULEInterParameter(self, pRULEInterParameter, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者产品RULE保证金查询响应
+    def OnRspQryInvestorProdRULEMargin(self, pInvestorProdRULEMargin, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者新型组合保证金开关查询响应
+    def OnRspQryInvestorPortfSetting(self, pInvestorPortfSetting, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 投资者申报费阶梯收取记录查询响应
+    def OnRspQryInvestorInfoCommRec(self, pInvestorInfoCommRec, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 组合腿信息查询响应
+    def OnRspQryCombLeg(self, pCombLeg, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 对冲设置请求响应
+    def OnRspOffsetSetting(self, pInputOffsetSetting, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 对冲设置撤销请求响应
+    def OnRspCancelOffsetSetting(self, pInputOffsetSetting, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 对冲设置通知
+    def OnRtnOffsetSetting(self, pOffsetSetting) -> None:
+        pass
+
+    # 对冲设置错误回报
+    def OnErrRtnOffsetSetting(self, pInputOffsetSetting, pRspInfo) -> None:
+        pass
+
+    # 对冲设置撤销错误回报
+    def OnErrRtnCancelOffsetSetting(self, pCancelOffsetSetting, pRspInfo) -> None:
+        pass
+
+    # 投资者对冲设置查询响应
+    def OnRspQryOffsetSetting(self, pOffsetSetting, pRspInfo, nRequestID, bIsLast) -> None:
         pass
