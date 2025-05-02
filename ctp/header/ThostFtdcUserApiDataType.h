@@ -10,12 +10,11 @@
 #ifndef THOST_FTDCDATATYPE_H
 #define THOST_FTDCDATATYPE_H
 
-enum THOST_TE_RESUME_TYPE
-{
-	THOST_TERT_RESTART = 0,
-	THOST_TERT_RESUME,
-	THOST_TERT_QUICK,
-	THOST_TERT_NONE
+enum THOST_TE_RESUME_TYPE {
+    THOST_TERT_RESTART = 0,
+    THOST_TERT_RESUME,
+    THOST_TERT_QUICK,
+    THOST_TERT_NONE
 };
 
 /////////////////////////////////////////////////////////////////////////
