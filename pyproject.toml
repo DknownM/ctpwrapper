@@ -5,7 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ctpwrapper"
 version = "6.7.13"
-authors = ["winton <365504029@qq.com>"]
+authors = [
+  {name = "winton", email = "365504029@qq.com"},
+]
 keywords = ["CTP", "Future", "SHFE", "Shanghai Future Exchange"]
 requires-python = ">=3.10"
 license = "LGPL-3.0-or-later"
