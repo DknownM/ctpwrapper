@@ -100,6 +100,12 @@ cdef extern from "ThostFtdcTraderApi.h":
         # 操作员登录后，可以多次调用该接口上报客户信息
         int SubmitUserSystemInfo(CThostFtdcUserSystemInfoField *pUserSystemInfo) except + nogil
 
+        #注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息.
+        int RegisterWechatUserSystemInfo(CThostFtdcWechatUserSystemInfoField *pUserSystemInfo) except + nogil
+
+        #上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息.
+        int SubmitWechatUserSystemInfo(CThostFtdcWechatUserSystemInfoField *pUserSystemInfo) except + nogil
+
         #用户登录请求
         int ReqUserLogin(CThostFtdcReqUserLoginField *pReqUserLoginField, int nRequestID) except + nogil
 
@@ -205,6 +211,9 @@ cdef extern from "ThostFtdcTraderApi.h":
 
         #请求查询合约手续费率
         int ReqQryInstrumentCommissionRate(CThostFtdcQryInstrumentCommissionRateField *pQryInstrumentCommissionRate, int nRequestID) except + nogil
+
+        #请求查询用户会话
+        int ReqQryUserSession(CThostFtdcQryUserSessionField *pQryUserSession, int nRequestID) except + nogil
 
         #请求查询交易所
         int ReqQryExchange(CThostFtdcQryExchangeField *pQryExchange, int nRequestID) except + nogil
@@ -448,6 +457,27 @@ cdef extern from "ThostFtdcTraderApi.h":
 
         # 投资者对冲设置查询
         int ReqQryOffsetSetting(CThostFtdcQryOffsetSettingField *pQryOffsetSetting, int nRequestID) except + nogil
+
+        # 申请短信验证码请求
+        int ReqGenSMSCode(CThostFtdcReqGenSMSCodeField *pReqGenSMSCode, int nRequestID) except + nogil
+
+        # 套利确认请求
+        int ReqSpdApply(CThostFtdcInputSpdApplyField *pInputSpdApply, int nRequestID) except + nogil
+
+        # 套利确认撤销请求
+        int ReqSpdApplyAction(CThostFtdcInputSpdApplyActionField *pInputSpdApplyAction, int nRequestID) except + nogil
+
+        # 套利确认查询请求
+        int ReqQrySpdApply(CThostFtdcQrySpdApplyField *pQrySpdApply, int nRequestID) except + nogil
+
+        # 套保确认请求
+        int ReqHedgeCfm(CThostFtdcInputHedgeCfmField *pInputHedgeCfm, int nRequestID) except + nogil
+
+        # 套保确认撤销请求
+        int ReqHedgeCfmAction(CThostFtdcInputHedgeCfmActionField *pInputHedgeCfmAction, int nRequestID) except + nogil
+
+        # 套保确认查询请求
+        int ReqQryHedgeCfm(CThostFtdcQryHedgeCfmField *pQryHedgeCfm, int nRequestID) except + nogil
 
 
 cdef extern from "ThostFtdcTraderApi.h" namespace "CThostFtdcTraderApi":

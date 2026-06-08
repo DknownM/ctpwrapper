@@ -20,7 +20,7 @@ import time
 from typing import Optional
 
 from ctpwrapper.ApiStructure import (
-    FensUserInfoField, UserSystemInfoField,
+    FensUserInfoField, UserSystemInfoField, WechatUserSystemInfoField,
     ReqAuthenticateField, ReqGenUserCaptchaField,
     ReqGenUserTextField, ReqQueryAccountField,
     ReqTransferField, QueryCFMMCTradingAccountTokenField,
@@ -52,7 +52,7 @@ from ctpwrapper.ApiStructure import (
     QryOrderField, QryTradeField,
     QryInvestorPositionField, QryTradingAccountField,
     QryInvestorField, QryTradingCodeField,
-    QryInstrumentCommissionRateField,
+    QryInstrumentCommissionRateField, QryUserSessionField,
     QryExchangeField, QryProductField,
     QryInstrumentField, QryDepthMarketDataField,
     QrySettlementInfoField, QryTransferBankField,
@@ -160,6 +160,18 @@ class TraderApiPy(TraderApiWrapper):
         操作员登录后，可以多次调用该接口上报客户信息
         """
         super(TraderApiPy, self).SubmitUserSystemInfo(pUserSystemInfo)
+
+    def RegisterWechatUserSystemInfo(self, pUserSystemInfo: "WechatUserSystemInfoField") -> None:
+        """
+        注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息.
+        """
+        super(TraderApiPy, self).RegisterWechatUserSystemInfo(pUserSystemInfo)
+
+    def SubmitWechatUserSystemInfo(self, pUserSystemInfo: "WechatUserSystemInfoField") -> None:
+        """
+        上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息.
+        """
+        super(TraderApiPy, self).SubmitWechatUserSystemInfo(pUserSystemInfo)
 
     def SubscribePublicTopic(self, nResumeType: int) -> None:
         """
@@ -390,6 +402,12 @@ class TraderApiPy(TraderApiWrapper):
         请求查询合约手续费率
         """
         return super(TraderApiPy, self).ReqQryInstrumentCommissionRate(pQryInstrumentCommissionRate, nRequestID)
+
+    def ReqQryUserSession(self, pQryUserSession: "QryUserSessionField", nRequestID: int) -> int:
+        """
+        请求查询用户会话
+        """
+        return super(TraderApiPy, self).ReqQryUserSession(pQryUserSession, nRequestID)
 
     def ReqQryExchange(self, pQryExchange: "QryExchangeField", nRequestID: int) -> int:
         """
@@ -811,6 +829,34 @@ class TraderApiPy(TraderApiWrapper):
     def ReqQryOffsetSetting(self, pQryOffsetSetting: "QryOffsetSettingField", nRequestID: int) -> int:
         return super(TraderApiPy, self).ReqQryOffsetSetting(pQryOffsetSetting, nRequestID)
 
+    # 申请短信验证码请求
+    def ReqGenSMSCode(self, pReqGenSMSCode: "ReqGenSMSCodeField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqGenSMSCode(pReqGenSMSCode, nRequestID)
+
+    # 套利确认请求
+    def ReqSpdApply(self, pInputSpdApply: "InputSpdApplyField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqSpdApply(pInputSpdApply, nRequestID)
+
+    # 套利确认撤销请求
+    def ReqSpdApplyAction(self, pInputSpdApplyAction: "InputSpdApplyActionField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqSpdApplyAction(pInputSpdApplyAction, nRequestID)
+
+    # 套利确认查询请求
+    def ReqQrySpdApply(self, pQrySpdApply: "QrySpdApplyField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQrySpdApply(pQrySpdApply, nRequestID)
+
+    # 套保确认请求
+    def ReqHedgeCfm(self, pInputHedgeCfm: "InputHedgeCfmField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqHedgeCfm(pInputHedgeCfm, nRequestID)
+
+    # 套保确认撤销请求
+    def ReqHedgeCfmAction(self, pInputHedgeCfmAction: "InputHedgeCfmActionField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqHedgeCfmAction(pInputHedgeCfmAction, nRequestID)
+
+    # 套保确认查询请求
+    def ReqQryHedgeCfm(self, pQryHedgeCfm: "QryHedgeCfmField", nRequestID: int) -> int:
+        return super(TraderApiPy, self).ReqQryHedgeCfm(pQryHedgeCfm, nRequestID)
+
     def OnFrontConnected(self) -> None:
         pass
 
@@ -831,6 +877,11 @@ class TraderApiPy(TraderApiWrapper):
 
     # 客户端认证响应
     def OnRspAuthenticate(self, pRspAuthenticateField, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 该方法在处理私有流之前被调用
+    # @param nSeqNo 即将被处理的私有流的序号
+    def OnRtnPrivateSeqNo(self, nSeqNo) -> None:
         pass
 
     # 登录请求响应
@@ -939,6 +990,10 @@ class TraderApiPy(TraderApiWrapper):
 
     # 请求查询合约手续费率响应
     def OnRspQryInstrumentCommissionRate(self, pInstrumentCommissionRate, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 请求查询用户会话响应
+    def OnRspQryUserSession(self, pUserSession, pRspInfo, nRequestID, bIsLast) -> None:
         pass
 
     # 请求查询交易所响应
@@ -1463,4 +1518,56 @@ class TraderApiPy(TraderApiWrapper):
 
     # 投资者对冲设置查询响应
     def OnRspQryOffsetSetting(self, pOffsetSetting, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 申请短信验证码响应
+    def OnRspGenSMSCode(self, pRspGenSMSCode, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套利确认回复
+    def OnRspSpdApply(self, pInputSpdApply, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套利确认撤销回复
+    def OnRspSpdApplyAction(self, pInputSpdApplyAction, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套利确认查询回复
+    def OnRspQrySpdApply(self, pSpdApply, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套利确认通知
+    def OnRtnSpdApply(self, pSpdApply) -> None:
+        pass
+
+    # 套利申请录入错误回报
+    def OnErrRtnSpdApply(self, pInputSpdApply, pRspInfo) -> None:
+        pass
+
+    # 套利确认撤销通知
+    def OnErrRtnSpdApplyAction(self, pSpdApplyAction, pRspInfo) -> None:
+        pass
+
+    # 套保确认回复
+    def OnRspHedgeCfm(self, pInputHedgeCfm, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套保确认撤销回复
+    def OnRspHedgeCfmAction(self, pInputHedgeCfmAction, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套保确认查询回复
+    def OnRspQryHedgeCfm(self, pHedgeCfm, pRspInfo, nRequestID, bIsLast) -> None:
+        pass
+
+    # 套保确认通知
+    def OnRtnHedgeCfm(self, pHedgeCfm) -> None:
+        pass
+
+    # 套保额度录入错误回报
+    def OnErrRtnHedgeCfm(self, pInputHedgeCfm, pRspInfo) -> None:
+        pass
+
+    # 套保确认撤销通知
+    def OnErrRtnHedgeCfmAction(self, pHedgeCfmAction, pRspInfo) -> None:
         pass

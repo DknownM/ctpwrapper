@@ -31,6 +31,8 @@ static inline int TraderSpi_OnHeartBeatWarning(PyObject *, int);
 
 static inline int TraderSpi_OnRspAuthenticate(PyObject *, CThostFtdcRspAuthenticateField *, CThostFtdcRspInfoField *, int, bool);
 
+static inline int TraderSpi_OnRtnPrivateSeqNo(PyObject *, int);
+
 static inline int TraderSpi_OnRspUserLogin(PyObject *, CThostFtdcRspUserLoginField *, CThostFtdcRspInfoField *, int, bool);
 
 static inline int TraderSpi_OnRspUserLogout(PyObject *, CThostFtdcUserLogoutField *, CThostFtdcRspInfoField *, int, bool);
@@ -82,6 +84,8 @@ static inline int TraderSpi_OnRspQryTradingCode(PyObject *, CThostFtdcTradingCod
 static inline int TraderSpi_OnRspQryInstrumentMarginRate(PyObject *, CThostFtdcInstrumentMarginRateField *, CThostFtdcRspInfoField *, int, bool);
 
 static inline int TraderSpi_OnRspQryInstrumentCommissionRate(PyObject *, CThostFtdcInstrumentCommissionRateField *, CThostFtdcRspInfoField *, int, bool);
+
+static inline int TraderSpi_OnRspQryUserSession(PyObject *, CThostFtdcUserSessionField *, CThostFtdcRspInfoField *, int, bool);
 
 static inline int TraderSpi_OnRspQryExchange(PyObject *, CThostFtdcExchangeField *, CThostFtdcRspInfoField *, int, bool);
 
@@ -387,6 +391,45 @@ static inline int TraderSpi_OnErrRtnCancelOffsetSetting(PyObject *, CThostFtdcCa
 ///投资者对冲设置查询响应
 static inline int TraderSpi_OnRspQryOffsetSetting(PyObject *, CThostFtdcOffsetSettingField *, CThostFtdcRspInfoField *, int, bool);
 
+///申请短信验证码响应
+static inline int TraderSpi_OnRspGenSMSCode(PyObject *, CThostFtdcRspGenSMSCodeField *, CThostFtdcRspInfoField *, int, bool);
+
+///套利确认回复
+static inline int TraderSpi_OnRspSpdApply(PyObject *, CThostFtdcInputSpdApplyField *, CThostFtdcRspInfoField *, int, bool);
+
+///套利确认撤销回复
+static inline int TraderSpi_OnRspSpdApplyAction(PyObject *, CThostFtdcInputSpdApplyActionField *, CThostFtdcRspInfoField *, int, bool);
+
+///套利确认查询回复
+static inline int TraderSpi_OnRspQrySpdApply(PyObject *, CThostFtdcSpdApplyField *, CThostFtdcRspInfoField *, int, bool);
+
+///套利确认通知
+static inline int TraderSpi_OnRtnSpdApply(PyObject *, CThostFtdcSpdApplyField *);
+
+///套利申请录入错误回报
+static inline int TraderSpi_OnErrRtnSpdApply(PyObject *, CThostFtdcInputSpdApplyField *, CThostFtdcRspInfoField *);
+
+///套利确认撤销通知
+static inline int TraderSpi_OnErrRtnSpdApplyAction(PyObject *, CThostFtdcSpdApplyActionField *, CThostFtdcRspInfoField *);
+
+///套保确认回复
+static inline int TraderSpi_OnRspHedgeCfm(PyObject *, CThostFtdcInputHedgeCfmField *, CThostFtdcRspInfoField *, int, bool);
+
+///套保确认撤销回复
+static inline int TraderSpi_OnRspHedgeCfmAction(PyObject *, CThostFtdcInputHedgeCfmActionField *, CThostFtdcRspInfoField *, int, bool);
+
+///套保确认查询回复
+static inline int TraderSpi_OnRspQryHedgeCfm(PyObject *, CThostFtdcHedgeCfmField *, CThostFtdcRspInfoField *, int, bool);
+
+///套保确认通知
+static inline int TraderSpi_OnRtnHedgeCfm(PyObject *, CThostFtdcHedgeCfmField *);
+
+///套保额度录入错误回报
+static inline int TraderSpi_OnErrRtnHedgeCfm(PyObject *, CThostFtdcInputHedgeCfmField *, CThostFtdcRspInfoField *);
+
+///套保确认撤销通知
+static inline int TraderSpi_OnErrRtnHedgeCfmAction(PyObject *, CThostFtdcHedgeCfmActionField *, CThostFtdcRspInfoField *);
+
 #define Python_GIL(func) \
     do { \
         PyGILState_STATE gil_state = PyGILState_Ensure(); \
@@ -429,6 +472,11 @@ public:
         Python_GIL(TraderSpi_OnRspAuthenticate(self, pRspAuthenticateField, pRspInfo, nRequestID, bIsLast));
     };
 
+    ///该方法在处理私有流之前被调用
+    ///@param nSeqNo 即将被处理的私有流的序号
+    virtual void OnRtnPrivateSeqNo(int nSeqNo) {
+        Python_GIL(TraderSpi_OnRtnPrivateSeqNo(self, nSeqNo));
+    };
 
     ///登录请求响应
     virtual void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
@@ -573,6 +621,11 @@ public:
     ///请求查询合约手续费率响应
     virtual void OnRspQryInstrumentCommissionRate(CThostFtdcInstrumentCommissionRateField *pInstrumentCommissionRate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
         Python_GIL(TraderSpi_OnRspQryInstrumentCommissionRate(self, pInstrumentCommissionRate, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///请求查询用户会话响应
+    virtual void OnRspQryUserSession(CThostFtdcUserSessionField *pUserSession, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryUserSession(self, pUserSession, pRspInfo, nRequestID, bIsLast));
     };
 
     ///请求查询交易所响应
@@ -1239,6 +1292,71 @@ public:
     ///投资者对冲设置查询响应
     virtual void OnRspQryOffsetSetting(CThostFtdcOffsetSettingField *pOffsetSetting, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
         Python_GIL(TraderSpi_OnRspQryOffsetSetting(self, pOffsetSetting, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///申请短信验证码响应
+    virtual void OnRspGenSMSCode(CThostFtdcRspGenSMSCodeField *pRspGenSMSCode, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspGenSMSCode(self, pRspGenSMSCode, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套利确认回复
+    virtual void OnRspSpdApply(CThostFtdcInputSpdApplyField *pInputSpdApply, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspSpdApply(self, pInputSpdApply, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套利确认撤销回复
+    virtual void OnRspSpdApplyAction(CThostFtdcInputSpdApplyActionField *pInputSpdApplyAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspSpdApplyAction(self, pInputSpdApplyAction, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套利确认查询回复
+    virtual void OnRspQrySpdApply(CThostFtdcSpdApplyField *pSpdApply, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQrySpdApply(self, pSpdApply, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套利确认通知
+    virtual void OnRtnSpdApply(CThostFtdcSpdApplyField *pSpdApply) {
+        Python_GIL(TraderSpi_OnRtnSpdApply(self, pSpdApply));
+    };
+
+    ///套利申请录入错误回报
+    virtual void OnErrRtnSpdApply(CThostFtdcInputSpdApplyField *pInputSpdApply, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnSpdApply(self, pInputSpdApply, pRspInfo));
+    };
+
+    ///套利确认撤销通知
+    virtual void OnErrRtnSpdApplyAction(CThostFtdcSpdApplyActionField *pSpdApplyAction, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnSpdApplyAction(self, pSpdApplyAction, pRspInfo));
+    };
+
+    ///套保确认回复
+    virtual void OnRspHedgeCfm(CThostFtdcInputHedgeCfmField *pInputHedgeCfm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspHedgeCfm(self, pInputHedgeCfm, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套保确认撤销回复
+    virtual void OnRspHedgeCfmAction(CThostFtdcInputHedgeCfmActionField *pInputHedgeCfmAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspHedgeCfmAction(self, pInputHedgeCfmAction, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套保确认查询回复
+    virtual void OnRspQryHedgeCfm(CThostFtdcHedgeCfmField *pHedgeCfm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+        Python_GIL(TraderSpi_OnRspQryHedgeCfm(self, pHedgeCfm, pRspInfo, nRequestID, bIsLast));
+    };
+
+    ///套保确认通知
+    virtual void OnRtnHedgeCfm(CThostFtdcHedgeCfmField *pHedgeCfm) {
+        Python_GIL(TraderSpi_OnRtnHedgeCfm(self, pHedgeCfm));
+    };
+
+    ///套保额度录入错误回报
+    virtual void OnErrRtnHedgeCfm(CThostFtdcInputHedgeCfmField *pInputHedgeCfm, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnHedgeCfm(self, pInputHedgeCfm, pRspInfo));
+    };
+
+    ///套保确认撤销通知
+    virtual void OnErrRtnHedgeCfmAction(CThostFtdcHedgeCfmActionField *pHedgeCfmAction, CThostFtdcRspInfoField *pRspInfo) {
+        Python_GIL(TraderSpi_OnErrRtnHedgeCfmAction(self, pHedgeCfmAction, pRspInfo));
     };
 
 
