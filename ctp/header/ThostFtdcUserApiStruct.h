@@ -53,6 +53,8 @@ struct CThostFtdcReqUserLoginField {
     TThostFtdcIPPortType ClientIPPort;
     ///终端IP地址
     TThostFtdcIPAddressType ClientIPAddress;
+    ///短信验证码
+    TThostFtdcSMSCodeType SMSCode;
 };
 
 ///用户登录应答
@@ -91,6 +93,10 @@ struct CThostFtdcRspUserLoginField {
     TThostFtdcDRIdentityIDType LoginDRIdentityID;
     ///用户所属中心号
     TThostFtdcDRIdentityIDType UserDRIdentityID;
+    ///上次登陆时间
+    TThostFtdcDateTimeType LastLoginTime;
+    ///预留信息
+    TThostFtdcReserveInfoType ReserveInfo;
 };
 
 ///用户登出请求
@@ -723,6 +729,8 @@ struct CThostFtdcTradingAccountField {
     TThostFtdcMoneyType FrozenSwap;
     ///剩余换汇额度
     TThostFtdcMoneyType RemainSwap;
+    ///期权市值
+    TThostFtdcMoneyType OptionValue;
 };
 
 ///投资者持仓
@@ -827,6 +835,8 @@ struct CThostFtdcInvestorPositionField {
     TThostFtdcMoneyType TasPositionCost;
     ///合约代码
     TThostFtdcInstrumentIDType InstrumentID;
+    ///期权市值
+    TThostFtdcMoneyType OptionValue;
 };
 
 ///合约保证金率
@@ -2233,6 +2243,8 @@ struct CThostFtdcSyncingTradingAccountField {
     TThostFtdcMoneyType FrozenSwap;
     ///剩余换汇额度
     TThostFtdcMoneyType RemainSwap;
+    ///期权市值
+    TThostFtdcMoneyType OptionValue;
 };
 
 ///正在同步中的投资者持仓
@@ -5939,6 +5951,8 @@ struct CThostFtdcContractBankField {
     TThostFtdcBankBrchIDType BankBrchID;
     ///银行名称
     TThostFtdcBankNameType BankName;
+    ///上报csrc的银行代码
+    TThostFtdcBankIDType csrcBankID;
 };
 
 ///投资者组合持仓明细
@@ -9723,6 +9737,8 @@ struct CThostFtdcUserSystemInfoField {
     TThostFtdcIPAddressType ClientPublicIP;
     ///客户登录备注2
     TThostFtdcClientLoginRemarkType ClientLoginRemark;
+    ///客户终端的MAC等标识
+    TThostFtdcDeviceTagType MAC;
 };
 
 ///终端用户绑定信息
@@ -9811,6 +9827,8 @@ struct CThostFtdcReqUserLoginSMField {
     TThostFtdcIPPortType ClientIPPort;
     ///终端IP地址
     TThostFtdcIPAddressType ClientIPAddress;
+    ///短信验证码
+    TThostFtdcSMSCodeType SMSCode;
     ///经纪公司名称
     TThostFtdcBrokerNameType BrokerName;
     ///认证码
@@ -10181,6 +10199,8 @@ struct CThostFtdcSyncDeltaTradingAccountField {
     TThostFtdcMoneyType FrozenSwap;
     ///剩余换汇额度
     TThostFtdcMoneyType RemainSwap;
+    ///期权市值
+    TThostFtdcMoneyType OptionValue;
     ///追平序号
     TThostFtdcSequenceNoType SyncDeltaSequenceNo;
 };
@@ -10237,7 +10257,7 @@ struct CThostFtdcSyncDeltaDceCombInstrumentField {
     TThostFtdcDirectionType Direction;
     ///产品代码
     TThostFtdcInstrumentIDType ProductID;
-    ///期权组合保证金比例
+    ///期货/期权组合保证金比例
     TThostFtdcDiscountRatioType Xparameter;
     ///操作标志
     TThostFtdcActionDirectionType ActionDirection;
@@ -10855,7 +10875,7 @@ struct CThostFtdcPortfTradeParamSettingField {
     TThostFtdcBrokerIDType BrokerID;
     ///投资者代码
     TThostFtdcInvestorIDType InvestorID;
-    ///新型组保算法
+    ///组保算法
     TThostFtdcPortfolioType Portfolio;
     ///撤单是否验资
     TThostFtdcBoolType IsActionVerify;
@@ -12003,6 +12023,8 @@ struct CThostFtdcIpAddrParamField {
     TThostFtdcSiteType Site;
     ///网络运营商
     TThostFtdcNetOperatorType NetOperator;
+    ///系统名称
+    TThostFtdcAddrNameType SysName;
 };
 
 ///服务地址参数查询
@@ -12041,6 +12063,8 @@ struct CThostFtdcTGIpAddrParamField {
     TThostFtdcSiteType Site;
     ///网络运营商
     TThostFtdcNetOperatorType NetOperator;
+    ///系统名称
+    TThostFtdcAddrNameType SysName;
 };
 
 ///服务地址参数查询
@@ -12787,6 +12811,8 @@ struct CThostFtdcOffsetSettingField {
     TThostFtdcUserIDType ActiveUserID;
     ///经纪公司报单编号
     TThostFtdcSequenceNoType BrokerOffsetSettingSeq;
+    ///申请来源
+    TThostFtdcApplySrcType ApplySrc;
 };
 
 ///撤销对冲设置
@@ -12871,6 +12897,522 @@ struct CThostFtdcAddrAppIDRelationField {
 struct CThostFtdcQryAddrAppIDRelationField {
     ///经纪公司代码
     TThostFtdcBrokerIDType BrokerID;
+};
+
+///微信小程序等用户系统信息
+struct CThostFtdcWechatUserSystemInfoField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///微信小程序等用户端系统内部信息长度
+    TThostFtdcSystemInfoLenType WechatCltSysInfoLen;
+    ///微信小程序等用户端系统内部信息
+    TThostFtdcClientSystemInfoType WechatCltSysInfo;
+    ///终端IP端口
+    TThostFtdcIPPortType ClientIPPort;
+    ///登录成功时间
+    TThostFtdcTimeType ClientLoginTime;
+    ///App代码
+    TThostFtdcAppIDType ClientAppID;
+    ///用户公网IP
+    TThostFtdcIPAddressType ClientPublicIP;
+    ///客户登录备注2
+    TThostFtdcClientLoginRemarkType ClientLoginRemark;
+};
+
+///投资者预留信息
+struct CThostFtdcInvestorReserveInfoField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///预留信息
+    TThostFtdcReserveInfoType ReserveInfo;
+};
+
+///查询组织架构投资者对应关系
+struct CThostFtdcQryInvestorDepartmentFlatField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+};
+
+///组织架构投资者对应关系
+struct CThostFtdcInvestorDepartmentFlatField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///组织架构代码
+    TThostFtdcInvestorIDType DepartmentID;
+};
+
+///查询操作员组织架构关系
+struct CThostFtdcQryDepartmentUserField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+};
+
+///App客户端认证码
+struct CThostFtdcAppAuthenticationCodeField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///App代码
+    TThostFtdcAppIDType AppID;
+    ///认证码
+    TThostFtdcAuthCodeType AuthCode;
+    ///旧认证码
+    TThostFtdcAuthCodeType PreAuthCode;
+    ///App类型
+    TThostFtdcAppTypeType AppType;
+};
+
+///客户中心权限豁免
+struct CThostFtdcUserDRIBypassField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///交易中心代码
+    TThostFtdcDRIdentityIDType DRIdentityID;
+};
+
+///申请短信验证码请求
+struct CThostFtdcReqGenSMSCodeField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///手机号
+    TThostFtdcSMSPhoneType Mobile;
+};
+
+///申请短信验证码响应
+struct CThostFtdcRspGenSMSCodeField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///生成时间
+    TThostFtdcTimeType GenTime;
+};
+
+///短信验证信息通知
+struct CThostFtdcSMSVerifyInfoFromSecField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///经纪公司简称
+    TThostFtdcBrokerAbbrType BrokerAbbr;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///手机号
+    TThostFtdcSMSPhoneType Mobile;
+    ///短信验证码
+    TThostFtdcSMSCodeType SMSCode;
+    ///验证码创建日期
+    TThostFtdcDateType CreateDate;
+    ///验证码创建时间
+    TThostFtdcTimeType CreateTime;
+    ///验证码是否被使用过
+    TThostFtdcBoolType IsUsed;
+    ///次席的交易中心代码
+    TThostFtdcDRIdentityIDType FromSec;
+};
+
+///登录验证设置
+struct CThostFtdcSMSVerifyConfigField {
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///手机号
+    TThostFtdcSMSPhoneType Mobile;
+    ///是否启用短信验证
+    TThostFtdcBoolType UseSMSVerify;
+};
+
+///短信验证信息通知
+struct CThostFtdcSMSVerifyInfoField {
+    ///验证码创建时间
+    TThostFtdcTimeType CreateTime;
+    ///手机号
+    TThostFtdcSMSPhoneType Mobile;
+    ///短信验证信息内容
+    TThostFtdcSMSContentType SMSContent;
+};
+
+///套利确认输入基本信息
+struct CThostFtdcInputSpdApplyField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合约代码
+    TThostFtdcInstrumentIDType FirstLegInstrumentID;
+    ///合约代码
+    TThostFtdcInstrumentIDType SecondLegInstrumentID;
+    ///数量
+    TThostFtdcVolumeType Volume;
+    ///买卖方向
+    TThostFtdcDirectionType Direction;
+    ///组合定单类型
+    TThostFtdcCmbTypeType CmbType;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套保确认输入基本信息
+struct CThostFtdcInputHedgeCfmField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合约代码
+    TThostFtdcInstrumentIDType InstrumentID;
+    ///数量
+    TThostFtdcVolumeType Volume;
+    ///买卖方向
+    TThostFtdcDirectionType Direction;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套利申请回报
+struct CThostFtdcSpdApplyField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///合约代码
+    TThostFtdcInstrumentIDType FirstLegInstrumentID;
+    ///合约代码
+    TThostFtdcInstrumentIDType SecondLegInstrumentID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///数量
+    TThostFtdcVolumeType Volume;
+    ///买卖方向
+    TThostFtdcDirectionType Direction;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///操作用户代码
+    TThostFtdcUserIDType ActiveUserID;
+    ///经纪公司报单编号
+    TThostFtdcSequenceNoType BrokerOrderSeq;
+    ///报单编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///申请状态
+    TThostFtdcApplyStatusType ApplyStatus;
+    ///序号
+    TThostFtdcSequenceNoType SequenceNo;
+    ///报单日期
+    TThostFtdcDateType InsertDate;
+    ///委托时间
+    TThostFtdcTimeType InsertTime;
+    ///撤销时间
+    TThostFtdcTimeType CancelTime;
+    ///本地报单编号
+    TThostFtdcOrderLocalIDType OrderLocalID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///会员代码
+    TThostFtdcParticipantIDType ParticipantID;
+    ///客户代码
+    TThostFtdcClientIDType ClientID;
+    ///合约在交易所的代码
+    TThostFtdcExchangeInstIDType ExchangeInstID;
+    ///交易所交易员代码
+    TThostFtdcTraderIDType TraderID;
+    ///安装编号
+    TThostFtdcInstallIDType InstallID;
+    ///报单提交状态
+    TThostFtdcOrderSubmitStatusType OrderSubmitStatus;
+    ///报单提示序号
+    TThostFtdcSequenceNoType NotifySequence;
+    ///交易日
+    TThostFtdcDateType TradingDay;
+    ///结算编号
+    TThostFtdcSettlementIDType SettlementID;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+    ///组合定单类型
+    TThostFtdcCmbTypeType CmbType;
+    ///状态信息
+    TThostFtdcErrorMsgType StatusMsg;
+};
+
+///套保申请回报
+struct CThostFtdcHedgeCfmField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///合约代码
+    TThostFtdcInstrumentIDType InstrumentID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///数量
+    TThostFtdcVolumeType Volume;
+    ///买卖方向
+    TThostFtdcDirectionType Direction;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///操作用户代码
+    TThostFtdcUserIDType ActiveUserID;
+    ///经纪公司报单编号
+    TThostFtdcSequenceNoType BrokerOrderSeq;
+    ///报单编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///申请状态
+    TThostFtdcApplyStatusType ApplyStatus;
+    ///序号
+    TThostFtdcSequenceNoType SequenceNo;
+    ///成功处理数量
+    TThostFtdcVolumeType DealVolume;
+    ///报单日期
+    TThostFtdcDateType InsertDate;
+    ///委托时间
+    TThostFtdcTimeType InsertTime;
+    ///撤销时间
+    TThostFtdcTimeType CancelTime;
+    ///日期
+    TThostFtdcDateType ReqDate;
+    ///本地报单编号
+    TThostFtdcOrderLocalIDType OrderLocalID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///会员代码
+    TThostFtdcParticipantIDType ParticipantID;
+    ///客户代码
+    TThostFtdcClientIDType ClientID;
+    ///合约在交易所的代码
+    TThostFtdcExchangeInstIDType ExchangeInstID;
+    ///交易所交易员代码
+    TThostFtdcTraderIDType TraderID;
+    ///安装编号
+    TThostFtdcInstallIDType InstallID;
+    ///报单提交状态
+    TThostFtdcOrderSubmitStatusType OrderSubmitStatus;
+    ///报单提示序号
+    TThostFtdcSequenceNoType NotifySequence;
+    ///交易日
+    TThostFtdcDateType TradingDay;
+    ///结算编号
+    TThostFtdcSettlementIDType SettlementID;
+    ///状态信息
+    TThostFtdcErrorMsgType StatusMsg;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套利套保申请查询
+struct CThostFtdcQrySpdApplyField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///报单编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///第一腿合约编码
+    TThostFtdcExchangeInstIDType FirstLegInstrumentID;
+    ///第二腿合约编码
+    TThostFtdcExchangeInstIDType SecondLegInstrumentID;
+};
+
+///套利套保申请查询
+struct CThostFtdcQryHedgeCfmField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///报单编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///合约代码
+    TThostFtdcInstrumentIDType InstrumentID;
+};
+
+///套利申请撤销
+struct CThostFtdcInputSpdApplyActionField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合同编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套保申请撤销
+struct CThostFtdcInputHedgeCfmActionField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合同编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套利申请撤销回报
+struct CThostFtdcSpdApplyActionField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///操作日期
+    TThostFtdcDateType ActionDate;
+    ///操作时间
+    TThostFtdcTimeType ActionTime;
+    ///交易所交易员代码
+    TThostFtdcTraderIDType TraderID;
+    ///安装编号
+    TThostFtdcInstallIDType InstallID;
+    ///本地报单编号
+    TThostFtdcOrderLocalIDType OrderLocalID;
+    ///操作本地编号
+    TThostFtdcOrderLocalIDType ActionLocalID;
+    ///会员代码
+    TThostFtdcParticipantIDType ParticipantID;
+    ///客户代码
+    TThostFtdcClientIDType ClientID;
+    ///报单操作状态
+    TThostFtdcOrderActionStatusType OrderActionStatus;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合同编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///状态信息
+    TThostFtdcErrorMsgType StatusMsg;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
+};
+
+///套保申请撤销回报
+struct CThostFtdcHedgeCfmActionField {
+    ///经纪公司代码
+    TThostFtdcBrokerIDType BrokerID;
+    ///投资者代码
+    TThostFtdcInvestorIDType InvestorID;
+    ///操作日期
+    TThostFtdcDateType ActionDate;
+    ///操作时间
+    TThostFtdcTimeType ActionTime;
+    ///交易所交易员代码
+    TThostFtdcTraderIDType TraderID;
+    ///安装编号
+    TThostFtdcInstallIDType InstallID;
+    ///本地报单编号
+    TThostFtdcOrderLocalIDType OrderLocalID;
+    ///操作本地编号
+    TThostFtdcOrderLocalIDType ActionLocalID;
+    ///会员代码
+    TThostFtdcParticipantIDType ParticipantID;
+    ///客户代码
+    TThostFtdcClientIDType ClientID;
+    ///报单操作状态
+    TThostFtdcOrderActionStatusType OrderActionStatus;
+    ///用户代码
+    TThostFtdcUserIDType UserID;
+    ///交易所代码
+    TThostFtdcExchangeIDType ExchangeID;
+    ///合同编号
+    TThostFtdcOrderSysIDType OrderSysID;
+    ///请求编号
+    TThostFtdcRequestIDType RequestID;
+    ///状态信息
+    TThostFtdcErrorMsgType StatusMsg;
+    ///报单引用
+    TThostFtdcOrderRefType OrderRef;
+    ///前置编号
+    TThostFtdcFrontIDType FrontID;
+    ///会话编号
+    TThostFtdcSessionIDType SessionID;
+    ///IP地址
+    TThostFtdcIPAddressType IPAddress;
+    ///Mac地址
+    TThostFtdcMacAddressType MacAddress;
 };
 
 
