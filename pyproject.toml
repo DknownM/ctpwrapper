@@ -2,6 +2,8 @@
 requires = ["setuptools>=82.0.1", "cython>=3.2.5"]
 build-backend = "setuptools.build_meta"
 
+[project.urls]
+GitHub = "https://github.com/nooperpudd/ctpwrapper"
 [project]
 name = "ctpwrapper"
 version = "6.7.13"
@@ -11,7 +13,6 @@ authors = [
 keywords = ["CTP", "Future", "SHFE", "Shanghai Future Exchange"]
 requires-python = ">=3.10"
 license = "LGPL-3.0-or-later"
-urls = ["https://github.com/nooperpudd/ctpwrapper"]
 dependencies = [
     "cython",
     "setuptools>=82.0.1",
