@@ -19,6 +19,7 @@ along with ctpwrapper.  If not, see <http://www.gnu.org/licenses/>.
 """
 from cpython cimport PyObject
 from libc.string cimport const_char
+from libcpp cimport bool as cbool
 
 from .ThostFtdcUserApiStruct cimport *
 
@@ -78,7 +79,7 @@ cdef extern from "ThostFtdcTraderApi.h":
         #        THOST_TERT_RESUME:从上次收到的续传
         #        THOST_TERT_QUICK:只传送登录后私有流的内容
         #@remark 该方法要在Init方法前调用。若不调用则不会收到私有流的数据。
-        void SubscribePrivateTopic(THOST_TE_RESUME_TYPE nResumeType) except + nogil
+        void SubscribePrivateTopic(THOST_TE_RESUME_TYPE nResumeType,int nSeqNo) except + nogil
 
         #订阅公共流。
         #@param nResumeType 公共流重传方式
@@ -450,7 +451,7 @@ cdef extern from "ThostFtdcTraderApi.h":
 
 
 cdef extern from "ThostFtdcTraderApi.h" namespace "CThostFtdcTraderApi":
-    CTraderApi *CreateFtdcTraderApi(const_char *pszFlowPath) except + nogil
+    CTraderApi *CreateFtdcTraderApi(const_char *pszFlowPath, cbool bIsProductionMode) except + nogil
 
 cdef extern from "CTraderAPI.h":
     cdef cppclass CTraderSpi:

@@ -33,10 +33,10 @@ class Parse(object):
         """
         处理 UserApiDataType file.
         """
-        for line in codecs.open(self.type_file, encoding="utf-8"):
+        for line in open(self.type_file, encoding="utf-8"):
             if line.startswith("typedef"):
 
-                result = re.findall("\w+", line)
+                result = re.findall("\\w+", line)
                 name = result[2]
                 type_ = result[1]
 
@@ -60,12 +60,12 @@ class Parse(object):
         """
         self.parse_datatype()
 
-        for index, line in enumerate(codecs.open(self.struct_file,
+        for index, line in enumerate(open(self.struct_file,
                                                  encoding="utf-8")):
             doc_line = index
 
             if line.startswith("struct"):
-                result = re.findall("\w+", line)
+                result = re.findall("\\w+", line)
                 name = result[1]  # assign the name
                 self.struct[name] = OrderedDict()
 
@@ -75,7 +75,7 @@ class Parse(object):
                 self.struct_doc[name] = struct_doc
 
             if line.strip().startswith("TThostFtdc"):
-                result = re.findall("\w+", line)
+                result = re.findall("\\w+", line)
                 field_type = result[0]
                 field_name = result[1].replace(";", "")
                 struct_dict = self.struct[name]
@@ -150,7 +150,7 @@ def generate_interface():
     structure = parse.struct
     struct_doc = parse.struct_doc
     # generate python
-    py_file = codecs.open(GENERATE_FILE, "w", encoding="utf-8")
+    py_file = open(GENERATE_FILE, "w", encoding="utf-8")
 
     py_file.write('# encoding=utf-8\n')
     py_file.write("import ctypes\n")

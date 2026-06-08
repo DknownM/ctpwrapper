@@ -94,8 +94,7 @@ public:
     virtual void OnRspRemoveParkedOrder(CThostFtdcRemoveParkedOrderField *pRemoveParkedOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
     ///删除预埋撤单响应
-    virtual void OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
-    };
+    virtual void OnRspRemoveParkedOrderAction(CThostFtdcRemoveParkedOrderActionField *pRemoveParkedOrderAction, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
 
     ///执行宣告录入请求响应
     virtual void OnRspExecOrderInsert(CThostFtdcInputExecOrderField *pInputExecOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {};
@@ -605,7 +604,7 @@ public:
     /// @param pFrontInfo：输入输出参数，用于存储获取到的前置信息，不能为空
     /// @remark 连接成功后，可获取正确的前置地址信息
     /// @remark 登录成功后，可获取正确的前置流控信息
-    virtual void GetFrontInfo(CThostFtdcFrontInfoField *pFrontInfo) =0;
+    virtual void GetFrontInfo(CThostFtdcFrontInfoField *pFrontInfo) = 0;
 
     ///注册前置机网络地址
     ///@param pszFrontAddress：前置机网络地址。

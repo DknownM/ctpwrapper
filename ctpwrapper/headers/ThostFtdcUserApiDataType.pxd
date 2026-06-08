@@ -1,21 +1,4 @@
 # encoding:utf-8
-# distutils: language=c++
-"""
-(Copyright) 2018, Winton Wang <365504029@qq.com>
-
-ctpwrapper is free software: you can redistribute it and/or modify
-it under the terms of the GNU LGPLv3 as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with ctpwrapper.  If not, see <http://www.gnu.org/licenses/>.
-"""
 
 cdef extern from 'ThostFtdcUserApiDataType.h':
     cdef enum THOST_TE_RESUME_TYPE:
@@ -45,6 +28,7 @@ cdef extern from 'ThostFtdcUserApiDataType.h':
     ctypedef char TThostFtdcExchangeAbbrType[9]
     ctypedef char TThostFtdcExchangeFlagType[2]
     ctypedef char TThostFtdcMacAddressType[21]
+    ctypedef char TThostFtdcDeviceTagType[41]
     ctypedef char TThostFtdcSystemIDType[21]
     ctypedef char TThostFtdcClientLoginRemarkType[151]
     ctypedef char TThostFtdcExchangePropertyType
@@ -859,3 +843,10 @@ cdef extern from 'ThostFtdcUserApiDataType.h':
     ctypedef char TThostFtdcOffsetTypeType
     ctypedef char TThostFtdcSiteType[51]
     ctypedef char TThostFtdcNetOperatorType[9]
+    ctypedef char TThostFtdcApplySrcType
+    ctypedef char TThostFtdcReserveInfoType[65]
+    ctypedef char TThostFtdcApplyStatusType
+    ctypedef char TThostFtdcCmbTypeType
+    ctypedef char TThostFtdcSMSCodeType[17]
+    ctypedef char TThostFtdcSMSContentType[129]
+    ctypedef char TThostFtdcSMSPhoneType[17]
