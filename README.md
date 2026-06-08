@@ -9,9 +9,9 @@
 [![implementation](https://img.shields.io/pypi/implementation/ctpwrapper.svg)](https://pypi.python.org/pypi/ctpwrapper)
 [![Downloads](https://pepy.tech/badge/ctpwrapper)](https://pepy.tech/project/ctpwrapper)
 
-[CTP Website](http://www.sfit.com.cn/5_2_DocumentDown_1.htm)
+[CTP Website](https://www.simnow.com.cn/static/apiDownload.action)
 
-Version: v6.7.9
+Version: v6.7.13
 
 Platform: Linux 64bit, Windows 64bit
 

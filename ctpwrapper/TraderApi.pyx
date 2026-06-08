@@ -40,9 +40,9 @@ cdef class TraderApiWrapper:
     def __dealloc__(self):
         self.Release()
 
-    def Create(self, const_char *pszFlowPath):
+    def Create(self, const_char *pszFlowPath, cbool bIsProductionMode):
 
-        self._api = CreateFtdcTraderApi(pszFlowPath)
+        self._api = CreateFtdcTraderApi(pszFlowPath, bIsProductionMode)
         if not self._api:
             raise MemoryError()
 
@@ -111,10 +111,10 @@ cdef class TraderApiWrapper:
             with nogil:
                 self._api.RegisterFensUserInfo(<CThostFtdcFensUserInfoField *> address)
 
-    def SubscribePrivateTopic(self, THOST_TE_RESUME_TYPE nResumeType):
+    def SubscribePrivateTopic(self, THOST_TE_RESUME_TYPE nResumeType, int nSeqNo=1):
         if self._api is not NULL:
             with nogil:
-                self._api.SubscribePrivateTopic(nResumeType)
+                self._api.SubscribePrivateTopic(nResumeType, nSeqNo)
     #订阅公共流。
     #@param nResumeType 公共流重传方式
     #        THOST_TERT_RESTART:从本交易日开始重传
@@ -156,6 +156,26 @@ cdef class TraderApiWrapper:
             address = ctypes.addressof(pUserSystemInfo)
             with nogil:
                 result = self._api.SubmitUserSystemInfo(<CThostFtdcUserSystemInfoField *> address)
+            return result
+
+    # 注册用户终端信息，用于中继服务器多连接模式.用于微信小程序等应用上报信息.
+    def RegisterWechatUserSystemInfo(self, pUserSystemInfo):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pUserSystemInfo)
+            with nogil:
+                result = self._api.RegisterWechatUserSystemInfo(<CThostFtdcWechatUserSystemInfoField *> address)
+            return result
+
+    # 上报用户终端信息，用于中继服务器操作员登录模式.用于微信小程序等应用上报信息.
+    def SubmitWechatUserSystemInfo(self, pUserSystemInfo):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pUserSystemInfo)
+            with nogil:
+                result = self._api.SubmitWechatUserSystemInfo(<CThostFtdcWechatUserSystemInfoField *> address)
             return result
 
     # 用户登录请求
@@ -498,6 +518,15 @@ cdef class TraderApiWrapper:
             address = ctypes.addressof(pQryInstrumentCommissionRate)
             with nogil:
                 result = self._api.ReqQryInstrumentCommissionRate(<CThostFtdcQryInstrumentCommissionRateField *> address, nRequestID)
+            return result
+    # 请求查询用户会话
+    def ReqQryUserSession(self, pQryUserSession, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._spi is not NULL:
+            address = ctypes.addressof(pQryUserSession)
+            with nogil:
+                result = self._api.ReqQryUserSession(<CThostFtdcQryUserSessionField *> address, nRequestID)
             return result
     # 请求查询交易所
     def ReqQryExchange(self, pQryExchange, int nRequestID):
@@ -1247,6 +1276,76 @@ cdef class TraderApiWrapper:
                 result = self._api.ReqQryOffsetSetting(<CThostFtdcQryOffsetSettingField *> address, nRequestID)
             return result
 
+    # 申请短信验证码请求
+    def ReqGenSMSCode(self, pReqGenSMSCode, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pReqGenSMSCode)
+            with nogil:
+                result = self._api.ReqGenSMSCode(<CThostFtdcReqGenSMSCodeField *> address, nRequestID)
+            return result
+
+    # 套利确认请求
+    def ReqSpdApply(self, pInputSpdApply, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pInputSpdApply)
+            with nogil:
+                result = self._api.ReqSpdApply(<CThostFtdcInputSpdApplyField *> address, nRequestID)
+            return result
+
+    # 套利确认撤销请求
+    def ReqSpdApplyAction(self, pInputSpdApplyAction, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pInputSpdApplyAction)
+            with nogil:
+                result = self._api.ReqSpdApplyAction(<CThostFtdcInputSpdApplyActionField *> address, nRequestID)
+            return result
+
+    # 套利确认查询请求
+    def ReqQrySpdApply(self, pQrySpdApply, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pQrySpdApply)
+            with nogil:
+                result = self._api.ReqQrySpdApply(<CThostFtdcQrySpdApplyField *> address, nRequestID)
+            return result
+
+    # 套保确认请求
+    def ReqHedgeCfm(self, pInputHedgeCfm, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pInputHedgeCfm)
+            with nogil:
+                result = self._api.ReqHedgeCfm(<CThostFtdcInputHedgeCfmField *> address, nRequestID)
+            return result
+
+    # 套保确认撤销请求
+    def ReqHedgeCfmAction(self, pInputHedgeCfmAction, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pInputHedgeCfmAction)
+            with nogil:
+                result = self._api.ReqHedgeCfmAction(<CThostFtdcInputHedgeCfmActionField *> address, nRequestID)
+            return result
+
+    # 套保确认查询请求
+    def ReqQryHedgeCfm(self, pQryHedgeCfm, int nRequestID):
+        cdef int result
+        cdef size_t address
+        if self._api is not NULL:
+            address = ctypes.addressof(pQryHedgeCfm)
+            with nogil:
+                result = self._api.ReqQryHedgeCfm(<CThostFtdcQryHedgeCfmField *> address, nRequestID)
+            return result
+
 cdef extern int TraderSpi_OnFrontConnected(self) except -1:
     self.OnFrontConnected()
     return 0
@@ -1270,6 +1369,10 @@ cdef extern int TraderSpi_OnRspAuthenticate(self,
         nRequestID,
         bIsLast
     )
+    return 0
+
+cdef extern int TraderSpi_OnRtnPrivateSeqNo(self, int nSeqNo) except -1:
+    self.OnRtnPrivateSeqNo(nSeqNo)
     return 0
 
 cdef extern int TraderSpi_OnRspUserLogin(self,
@@ -1604,6 +1707,19 @@ cdef extern int TraderSpi_OnRspQryInstrumentCommissionRate(self,
                                                            cbool bIsLast) except -1:
     self.OnRspQryInstrumentCommissionRate(
         None if pInstrumentCommissionRate is NULL else ApiStructure.InstrumentCommissionRateField.from_address(<size_t> pInstrumentCommissionRate),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+cdef extern int TraderSpi_OnRspQryUserSession(self,
+                                             CThostFtdcUserSessionField *pUserSession,
+                                             CThostFtdcRspInfoField *pRspInfo,
+                                             int nRequestID,
+                                             cbool bIsLast) except -1:
+    self.OnRspQryUserSession(
+        None if pUserSession is NULL else ApiStructure.UserSessionField.from_address(<size_t> pUserSession),
         None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
         nRequestID,
         bIsLast
@@ -3103,5 +3219,159 @@ cdef extern int TraderSpi_OnRspQryOffsetSetting(self,
         None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
         nRequestID,
         bIsLast
+    )
+    return 0
+
+# 申请短信验证码响应
+cdef extern int TraderSpi_OnRspGenSMSCode(self,
+                                          CThostFtdcRspGenSMSCodeField *pRspGenSMSCode,
+                                          CThostFtdcRspInfoField *pRspInfo,
+                                          int nRequestID,
+                                          cbool bIsLast) except -1:
+    self.OnRspGenSMSCode(
+        None if pRspGenSMSCode is NULL else ApiStructure.RspGenSMSCodeField.from_address(<size_t> pRspGenSMSCode),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套利确认回复
+cdef extern int TraderSpi_OnRspSpdApply(self,
+                                        CThostFtdcInputSpdApplyField *pInputSpdApply,
+                                        CThostFtdcRspInfoField *pRspInfo,
+                                        int nRequestID,
+                                        cbool bIsLast) except -1:
+    self.OnRspSpdApply(
+        None if pInputSpdApply is NULL else ApiStructure.InputSpdApplyField.from_address(<size_t> pInputSpdApply),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套利确认撤销回复
+cdef extern int TraderSpi_OnRspSpdApplyAction(self,
+                                              CThostFtdcInputSpdApplyActionField *pInputSpdApplyAction,
+                                              CThostFtdcRspInfoField *pRspInfo,
+                                              int nRequestID,
+                                              cbool bIsLast) except -1:
+    self.OnRspSpdApplyAction(
+        None if pInputSpdApplyAction is NULL else ApiStructure.InputSpdApplyActionField.from_address(<size_t> pInputSpdApplyAction),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套利确认查询回复
+cdef extern int TraderSpi_OnRspQrySpdApply(self,
+                                           CThostFtdcSpdApplyField *pSpdApply,
+                                           CThostFtdcRspInfoField *pRspInfo,
+                                           int nRequestID,
+                                           cbool bIsLast) except -1:
+    self.OnRspQrySpdApply(
+        None if pSpdApply is NULL else ApiStructure.SpdApplyField.from_address(<size_t> pSpdApply),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套利确认通知
+cdef extern int TraderSpi_OnRtnSpdApply(self,
+                                       CThostFtdcSpdApplyField *pSpdApply) except -1:
+    self.OnRtnSpdApply(
+        None if pSpdApply is NULL else ApiStructure.SpdApplyField.from_address(<size_t> pSpdApply)
+    )
+    return 0
+
+# 套利申请录入错误回报
+cdef extern int TraderSpi_OnErrRtnSpdApply(self,
+                                           CThostFtdcInputSpdApplyField *pInputSpdApply,
+                                           CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnSpdApply(
+        None if pInputSpdApply is NULL else ApiStructure.InputSpdApplyField.from_address(<size_t> pInputSpdApply),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+    )
+    return 0
+
+# 套利确认撤销通知
+cdef extern int TraderSpi_OnErrRtnSpdApplyAction(self,
+                                                  CThostFtdcSpdApplyActionField *pSpdApplyAction,
+                                                  CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnSpdApplyAction(
+        None if pSpdApplyAction is NULL else ApiStructure.SpdApplyActionField.from_address(<size_t> pSpdApplyAction),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+    )
+    return 0
+
+# 套保确认回复
+cdef extern int TraderSpi_OnRspHedgeCfm(self,
+                                        CThostFtdcInputHedgeCfmField *pInputHedgeCfm,
+                                        CThostFtdcRspInfoField *pRspInfo,
+                                        int nRequestID,
+                                        cbool bIsLast) except -1:
+    self.OnRspHedgeCfm(
+        None if pInputHedgeCfm is NULL else ApiStructure.InputHedgeCfmField.from_address(<size_t> pInputHedgeCfm),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套保确认撤销回复
+cdef extern int TraderSpi_OnRspHedgeCfmAction(self,
+                                              CThostFtdcInputHedgeCfmActionField *pInputHedgeCfmAction,
+                                              CThostFtdcRspInfoField *pRspInfo,
+                                              int nRequestID,
+                                              cbool bIsLast) except -1:
+    self.OnRspHedgeCfmAction(
+        None if pInputHedgeCfmAction is NULL else ApiStructure.InputHedgeCfmActionField.from_address(<size_t> pInputHedgeCfmAction),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套保确认查询回复
+cdef extern int TraderSpi_OnRspQryHedgeCfm(self,
+                                           CThostFtdcHedgeCfmField *pHedgeCfm,
+                                           CThostFtdcRspInfoField *pRspInfo,
+                                           int nRequestID,
+                                           cbool bIsLast) except -1:
+    self.OnRspQryHedgeCfm(
+        None if pHedgeCfm is NULL else ApiStructure.HedgeCfmField.from_address(<size_t> pHedgeCfm),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+        nRequestID,
+        bIsLast
+    )
+    return 0
+
+# 套保确认通知
+cdef extern int TraderSpi_OnRtnHedgeCfm(self,
+                                        CThostFtdcHedgeCfmField *pHedgeCfm) except -1:
+    self.OnRtnHedgeCfm(
+        None if pHedgeCfm is NULL else ApiStructure.HedgeCfmField.from_address(<size_t> pHedgeCfm)
+    )
+    return 0
+
+# 套保额度录入错误回报
+cdef extern int TraderSpi_OnErrRtnHedgeCfm(self,
+                                           CThostFtdcInputHedgeCfmField *pInputHedgeCfm,
+                                           CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnHedgeCfm(
+        None if pInputHedgeCfm is NULL else ApiStructure.InputHedgeCfmField.from_address(<size_t> pInputHedgeCfm),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
+    )
+    return 0
+
+# 套保确认撤销通知
+cdef extern int TraderSpi_OnErrRtnHedgeCfmAction(self,
+                                                  CThostFtdcHedgeCfmActionField *pHedgeCfmAction,
+                                                  CThostFtdcRspInfoField *pRspInfo) except -1:
+    self.OnErrRtnHedgeCfmAction(
+        None if pHedgeCfmAction is NULL else ApiStructure.HedgeCfmActionField.from_address(<size_t> pHedgeCfmAction),
+        None if pRspInfo is NULL else ApiStructure.RspInfoField.from_address(<size_t> pRspInfo),
     )
     return 0

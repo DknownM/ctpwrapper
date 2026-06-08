@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=82.0.1", "cython>=3.2.5"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+GitHub = "https://github.com/nooperpudd/ctpwrapper"
+[project]
+name = "ctpwrapper"
+version = "6.7.13"
+authors = [
+  {name = "winton", email = "365504029@qq.com"},
+]
+readme = "README.md"
+keywords = ["CTP", "Future", "SHFE", "Shanghai Future Exchange"]
+requires-python = ">=3.10"
+license = "LGPL-3.0-or-later"
+dependencies = [
+    "cython",
+    "setuptools>=82.0.1",
+]
+description = "CTP client v6.7.13"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX",
+    "Operating System :: Microsoft",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries"
+]

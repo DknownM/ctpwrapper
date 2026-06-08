@@ -14,7 +14,6 @@
 #endif
 
 
-
 ///获取AES加密和RSA加密的终端信息 pSystemInfo的空间需要调用者自己分配 至少270个字节
 /// windows返回值定义
 /* 返回的int值 不为0 表示采集信息有误 具体哪个采集项有问题需要做如下判断
@@ -45,13 +44,13 @@
 返回值 & （0x01 << 8） 不为0 表示 BIOS 获取失败
 */
 
-DATA_COLLECT_API_EXPORT int CTP_GetSystemInfo(char* pSystemInfo, int& nLen);
+DATA_COLLECT_API_EXPORT int CTP_GetSystemInfo(char *pSystemInfo, int &nLen);
 
 
 //版本号格式
 //Sfit + 生产还是测试秘钥(pro/tst) + 秘钥版本 + 编译时间 + 版本(内部)
 
-DATA_COLLECT_API_EXPORT const char * CTP_GetDataCollectApiVersion(void);
+DATA_COLLECT_API_EXPORT const char *CTP_GetDataCollectApiVersion(void);
 
 
 #endif

@@ -5,7 +5,6 @@ import platform
 import re
 import shutil
 import sys
-from distutils.dir_util import copy_tree
 from setuptools import setup
 
 from Cython.Build import cythonize, build_ext
@@ -23,7 +22,7 @@ def find_version(*file_paths):
     extract directly from the init file
     """
     here = os.path.abspath(os.path.dirname(__file__))
-    with codecs.open(os.path.join(here, *file_paths), 'r', encoding="utf-8") as f:
+    with open(os.path.join(here, *file_paths), 'r', encoding="utf-8") as f:
         version_file = f.read()
 
     # The version line must have the form
@@ -68,7 +67,7 @@ shutil.copy2(header_dir + "/error.dtd", project_dir + "/error.dtd")
 shutil.copy2(header_dir + "/error.xml", project_dir + "/error.xml")
 
 if sys.platform in ["linux", "win32"]:
-    copy_tree(lib_dir, project_dir)
+    shutil.copytree(lib_dir, project_dir, dirs_exist_ok=True)
 
 common_args = {
     "cython_include_dirs": [cython_headers],
@@ -95,21 +94,10 @@ ext_modules = [
 ]
 
 setup(
-    name="ctpwrapper",
-    version=find_version("ctpwrapper", "__init__.py"),
-    description="CTP client v6.7.9",
-    long_description=codecs.open("README.md", encoding="utf-8").read(),
-    long_description_content_type='text/markdown',
-    license="LGPLv3",
-    keywords="CTP,Future,SHFE,Shanghai Future Exchange",
-    author="Winton Wang",
-    author_email="365504029@qq.com",
-    url="https://github.com/nooperpudd/ctpwrapper",
     include_dirs=[header_dir, cpp_header_dir],
     platforms=["win32", "linux"],
     packages=["ctpwrapper"],
     package_data={"": package_data},
-    python_requires=">=3.9",
     # cython: binding=True
     # binding = true for inspect get callargs
     ext_modules=cythonize(ext_modules,
@@ -117,24 +105,4 @@ setup(
                                                "binding": True}
                           ),
     cmdclass={'build_ext': build_ext},
-    classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Developers",
-        "Operating System :: POSIX",
-        "Operating System :: Microsoft",
-        "Operating System :: Microsoft :: Windows",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3.12",
-        "Programming Language :: Python :: 3.13",
-        "Programming Language :: Python :: Implementation",
-        "Programming Language :: Python :: Implementation :: CPython",
-        "Programming Language :: Python :: Implementation :: PyPy",
-        "Topic :: Software Development",
-        "Topic :: Software Development :: Libraries"
-    ]
 )

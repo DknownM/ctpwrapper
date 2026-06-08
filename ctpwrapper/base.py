@@ -36,7 +36,7 @@ class Base(ctypes.Structure):
         else:
             return value
 
-    def _to_bytes(self, value):
+    def _to_bytes(self, value) -> bytes:
         """
         :return:
         """

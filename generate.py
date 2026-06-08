@@ -22,7 +22,7 @@ def generate_structure(datatype_dict):
 
     generate_file = os.path.join(GENERATE_PATH, "ThostFtdcUserApiStruct.pxd")
 
-    data_struct_file = codecs.open(generate_file, "w", encoding="utf-8")
+    data_struct_file = open(generate_file, "w", encoding="utf-8")
     data_struct_file.write("# encoding:utf-8")
     data_struct_file.write("\n" * 2)
 
@@ -31,14 +31,14 @@ def generate_structure(datatype_dict):
 
     data_struct_file.write("cdef extern from 'ThostFtdcUserApiStruct.h':\n")
 
-    for line in codecs.open(USERAPI_STRUCT_FILE, encoding="utf-8"):
+    for line in open(USERAPI_STRUCT_FILE, encoding="utf-8"):
         if line.startswith("struct"):
-            result = re.findall("\w+", line)
+            result = re.findall("\\w+", line)
             name = result[1]
             data_struct_file.write("    cdef struct {name}:\n".format(name=name))
         else:
 
-            result = re.findall("\w+", line)
+            result = re.findall("\\w+", line)
 
             if result:
                 type_name = result[0]
@@ -56,13 +56,13 @@ def generate_datatype():
     datatype_dict = OrderedDict()
 
     generate_file = os.path.join(GENERATE_PATH, "ThostFtdcUserApiDataType.pxd")
-    data_type_file = codecs.open(generate_file, "w", encoding="utf-8")
+    data_type_file = open(generate_file, "w", encoding="utf-8")
 
     data_type_file.write("# encoding:utf-8")
     data_type_file.write("\n" * 2)
     data_type_file.write("cdef extern from 'ThostFtdcUserApiDataType.h':\n")
 
-    for line in codecs.open(USERAPI_DATA_FILE, encoding="utf-8"):
+    for line in open(USERAPI_DATA_FILE, encoding="utf-8"):
         if line.startswith("enum"):
             # special output data
             data_type_file.write(""" 
@@ -76,7 +76,7 @@ def generate_datatype():
         if line.startswith("#define"):
             pass
         elif line.startswith("typedef"):
-            result = re.findall("\w+", line)
+            result = re.findall("\\w+", line)
 
             _type = result[1]
             name = result[2]

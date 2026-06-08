@@ -65,10 +65,10 @@ cdef class MdApiWrapper:
             self._api = NULL
             self._spi = NULL
 
-    def Create(self, const_char *pszFlowPath, cbool bIsUsingUdp, cbool bIsMulticast):
+    def Create(self, const_char *pszFlowPath, cbool bIsUsingUdp, cbool bIsMulticast, cbool bIsProductionMode):
 
         with nogil:
-            self._api = CreateFtdcMdApi(pszFlowPath, bIsUsingUdp, bIsMulticast)
+            self._api = CreateFtdcMdApi(pszFlowPath, bIsUsingUdp, bIsMulticast, bIsProductionMode)
 
         if not self._api:
             raise MemoryError()
