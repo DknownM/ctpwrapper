@@ -74,8 +74,8 @@ from ctpwrapper.TraderApi import TraderApiWrapper
 
 class TraderApiPy(TraderApiWrapper):
 
-    def Create(self, pszFlowPath: Optional[str] = "") -> None:
-        super(TraderApiPy, self).Create(pszFlowPath.encode())
+    def Create(self, pszFlowPath: Optional[str] = "", bIsProductionMode: bool = True) -> None:
+        super(TraderApiPy, self).Create(pszFlowPath.encode(), bIsProductionMode)
 
     def Release(self) -> None:
         super(TraderApiPy, self).Release()
@@ -135,7 +135,7 @@ class TraderApiPy(TraderApiWrapper):
         """
         super(TraderApiPy, self).RegisterFensUserInfo(pFensUserInfo)
 
-    def SubscribePrivateTopic(self, nResumeType: int) -> None:
+    def SubscribePrivateTopic(self, nResumeType: int, nSeqNo: int) -> None:
         """
         订阅私有流。
         :param nResumeType: 私有流重传方式

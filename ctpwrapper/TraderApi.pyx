@@ -40,9 +40,9 @@ cdef class TraderApiWrapper:
     def __dealloc__(self):
         self.Release()
 
-    def Create(self, const_char *pszFlowPath):
+    def Create(self, const_char *pszFlowPath, cbool bIsProductionMode):
 
-        self._api = CreateFtdcTraderApi(pszFlowPath)
+        self._api = CreateFtdcTraderApi(pszFlowPath, bIsProductionMode)
         if not self._api:
             raise MemoryError()
 
@@ -111,10 +111,10 @@ cdef class TraderApiWrapper:
             with nogil:
                 self._api.RegisterFensUserInfo(<CThostFtdcFensUserInfoField *> address)
 
-    def SubscribePrivateTopic(self, THOST_TE_RESUME_TYPE nResumeType):
+    def SubscribePrivateTopic(self, THOST_TE_RESUME_TYPE nResumeType, int nSeqNo=1):
         if self._api is not NULL:
             with nogil:
-                self._api.SubscribePrivateTopic(nResumeType)
+                self._api.SubscribePrivateTopic(nResumeType, nSeqNo)
     #订阅公共流。
     #@param nResumeType 公共流重传方式
     #        THOST_TERT_RESTART:从本交易日开始重传

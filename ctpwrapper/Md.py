@@ -29,14 +29,15 @@ class MdApiPy(MdApiWrapper):
 
     def Create(self, pszFlowPath: Optional[str] = "",
                bIsUsingUdp: Optional[bool] = False,
-               bIsMulticast: Optional[bool] = False) -> None:
+               bIsMulticast: Optional[bool] = False,
+               bIsProductionMode: Optional[bool] = True) -> None:
         """
         创建MdApi
         :param pszFlowPath: 存贮订阅信息文件的目录，默认为当前目录
         :param bIsUsingUdp:
         :param bIsMulticast:
         """
-        super(MdApiPy, self).Create(pszFlowPath.encode(), bIsUsingUdp, bIsMulticast)
+        super(MdApiPy, self).Create(pszFlowPath.encode(), bIsUsingUdp, bIsMulticast, bIsProductionMode)
 
     def Init(self) -> None:
         """
