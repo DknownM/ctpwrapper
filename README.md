@@ -755,18 +755,7 @@ doc/ctp/
 
 ---
 
-## 捐助与联系
 
-如果本项目对你有帮助，欢迎捐助支持维护：
-
-<img src="images/alipay.png" width="250" height="250"><img src="images/wechat.jpg" width="250" height="250">
-
-如有问题，可通过以下方式联系或反馈：
-
-- GitHub Issues：https://github.com/nooperpudd/ctpwrapper/issues
-- 邮箱：365504029@qq.com
-
----
 
 ## 致谢
 
