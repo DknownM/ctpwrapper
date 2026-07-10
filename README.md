@@ -146,6 +146,8 @@ python trader_main.py
 
 行情接口核心类是 `ctpwrapper.MdApiPy`。通常做法是继承它，并重写需要处理的回调函数。
 
+> 需要逐个函数备查时，请阅读单独的 [MdApiPy 行情接口函数字典](docs/mdapi-function-dictionary.md)。
+
 ### 基本调用顺序
 
 1. 创建自定义行情类，继承 `MdApiPy`。
